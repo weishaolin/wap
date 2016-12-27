@@ -1,42 +1,31 @@
 package com.huatai.app.controller;
 
-import java.awt.PointerInfo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
-
-import org.springframework.data.annotation.Reference;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.huatai.app.entity.ProlistEntity;
 import com.huatai.app.util.PostUtil;
 
-import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @Controller
-@RequestMapping
-public class HFivePageController {
+@RequestMapping("/product")
+public class ProductController {
 
 	@Resource
 	private PostUtil postUtil;
 	
 	//list界面
-	@RequestMapping(value="/prolist",method = RequestMethod.GET)
+	@RequestMapping(value="/list",method = RequestMethod.GET)
 	public  String prolist(Model model){
 		System.out.println("進入");
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -47,8 +36,23 @@ public class HFivePageController {
 //		JSONArray jsonArray = json.getJSONArray(json);
 		model.addAttribute("prolist", json);
 		System.out.println("model:"+model);
-		return "fivepage/product_list";
+		return "fivepage/productList";
 	} 
+	//list界面
+		@RequestMapping(value="/list/material",method = RequestMethod.GET)
+		public  String productListByMaterial(@RequestParam(value="materialId") String materialId,Model model){
+			System.out.println("進入");
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("currentUserId", "1");
+			map.put("material", materialId);
+			String formDataPost = postUtil.formDataPost(map);
+			System.out.println("formDataPost："+formDataPost);
+			JSONObject json = JSONObject.fromObject(formDataPost);
+//			JSONArray jsonArray = json.getJSONArray(json);
+			model.addAttribute("prolist", json);
+			System.out.println("model:"+model);
+			return "fivepage/productList";
+		} 
 	//长度最长
 	@RequestMapping(value="/sortProperty",method = RequestMethod.GET)
 	public  String sortProperty(@RequestParam(value="sortProperty") String sortProperty, Model model){
@@ -62,7 +66,7 @@ public class HFivePageController {
 		model.addAttribute("prolist", json);
 		model.addAttribute("sortProperty", map);
 		System.out.println("model:"+model);
-		return "fivepage/product_list";
+		return "fivepage/productList";
 	}
 	
 	//排序
@@ -78,7 +82,7 @@ public class HFivePageController {
 		model.addAttribute("prolist", json);
 		model.addAttribute("searchString", map);
 		System.out.println("model:"+model);
-		return "fivepage/product_list";
+		return "fivepage/productList";
 	}
 	
 		//筛选
@@ -117,7 +121,7 @@ public class HFivePageController {
 		JSONObject transmit = JSONObject.fromObject(map);
 		System.out.println("transmit:"+transmit);
 		model.addAttribute("transmit", transmit);
-		return "fivepage/product_list";
+		return "fivepage/productList";
 	}
 	
 	@RequestMapping(value="/pullUp",produces="text/html;charset=UTF-8")
@@ -166,7 +170,7 @@ public class HFivePageController {
 	}
 	
 	//详情界面
-	@RequestMapping(value="/productinfo")
+	@RequestMapping(value="/info")
 	public  String productinfo(@RequestParam(value="uid") String uid, Model  model){
 		System.out.println("進入:"+uid);
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -193,14 +197,6 @@ public class HFivePageController {
 		//解析结束
 		model.addAttribute("prolist", json);
 		model.addAttribute("productAlbum", jsonarry);
-		return "fivepage/pro_details";
+		return "fivepage/productDetails";
 	}
-	//重定向
-/*	@RequestMapping(value="/screen02")
-	public  String screen02(@ModelAttribute("prolist") String prolist, Model model){
-		System.out.println("prolist:"+prolist);
-		JSONObject json = JSONObject.fromObject(prolist);
-		model.addAttribute("prolist", json);
-		return "fivepage/product_list";
-	}*/
 }
