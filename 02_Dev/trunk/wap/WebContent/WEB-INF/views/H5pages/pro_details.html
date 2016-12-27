@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript">
+	if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+		var version = parseFloat(RegExp.$1);
+		if(version>2.3){
+			var phoneScale = parseInt(window.screen.width)/750;
+			document.write('<meta name="viewport" content="width=750, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+		}else{
+			document.write('<meta name="viewport" content="width=750, target-densitydpi=device-dpi">');
+		}
+	}else{
+		document.write('<meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">');
+	};
+</script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="">
+<title>现货网站系统</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<!-- header start -->
+<header id="header">
+	<a href="product_list.html" class="back">&lt;</a>
+	<h1>产品详情</h1>
+</header>
+
+<!-- wrap start -->
+<div id="wrapper" class="wrap">
+	<div class="pro_details">
+		<div class="detail_title">
+			<h1>巴花</h1>
+			<p>巴花板187*84*10</p>
+		</div>
+		<ul class="info_list">
+			<li><span>长&emsp;度（cm）</span>187</li>
+			<li><span>宽&emsp;度（cm）</span>84</li>
+			<li><span>厚&emsp;度（cm）</span>10</li>
+			<li><span>立方数（m<font>3</font>）</span>0.16</li>
+			<li><span>重&emsp;量（kg）</span></li>
+		</ul>
+		<div class="pro_pic">
+			<h1>产品图片</h1>
+			<a href="image/bahuaban.jpg"><img src="image/bahuaban.jpg"/></a>
+			<a href="image/bahuaban2.jpg"><img src="image/bahuaban2.jpg"/></a>
+		</div>
+	</div>
+	<!-- backTop -->
+	<div id="backTop"><a href="javascript:;" class="btn-top"></a></div>
+</div>
+<!-- wrap end -->
+<script type="text/javascript" src="js/jquery-2.1.3.min.js" ></script>
+<script type="text/javascript" src="js/common.js" ></script>
+<script type="text/javascript" src="js/backtop.js" ></script>
+</body>
+</html>
