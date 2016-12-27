@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%> 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html>
@@ -27,62 +28,80 @@
 <style type="text/css">
 #wrapperscr {
 	position:absolute; z-index:1;
-	top:45px; bottom:48px; left:0;
+	top:300px; bottom:48px; left:0;
 	width:100%;
-	/* background:#aaa; */
+	 /* background:#555; */
 	overflow:auto;
 }
-
 #scroller {
-	position:absolute; z-index:1;
-/*	-webkit-touch-callout:none;*/
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-	width:100%;
-	padding:0;
-}
 
+	 position:absolute;  z-index:1;
+/*	-webkit-touch-callout:none;*/
+	 -webkit-tap-highlight-color:rgba(0,0,0,0); 
+	width:100%;
+	 padding:0; 
+}
+ #scroller ul {
+	position:relative;
+	list-style:none;
+	padding:0;
+	margin:0;
+	width:100%;
+	text-align:left;
+}
 /** 
  * 
  * scroll styles 
  * 
- */  
-#pullUp {  
+ */
+#scroller #pullDown{
+/* padding:30px 30px 30px 30px; */
+margin:0px 0px; 
+} 
+#pullDown,#pullUp {  
     background:#fff;  
-    height:40px;  
+    height:90px;  
     line-height:40px;  
-    padding:5px 10px;  
+    padding:0px 230px;
     border-bottom:1px solid #ccc;  
     font-weight:bold;  
     font-size:14px;  
-    color:#888;  
+    color:#888;
+	text-align:center; /*水平居中*/
 }  
-#pullUp .pullUpIcon  {  
+#pullDown .pullDownIcon,#pullUp .pullUpIcon  { 
     display:block; float:left;  
     width:40px; height:40px;  
-    background:url(${ctx}/scripts/fivestyle/image/pull-icon@2x.png) 0 0 no-repeat;  
+    background:url(${ctx}/scripts/fivestyle/image/pull-icon.png) 0 0 no-repeat;  
     -webkit-background-size:40px 80px; background-size:40px 80px;  
     -webkit-transition-property:-webkit-transform;  
     -webkit-transition-duration:250ms;  
+}
+#pullDown .pullDownIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
 }    
 #pullUp .pullUpIcon  {  
     -webkit-transform:rotate(-180deg) translateZ(0);  
-}  
+}
+#pullDown.flip .pullDownIcon {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
 #pullUp.flip .pullUpIcon {  
     -webkit-transform:rotate(0deg) translateZ(0);  
 }  
-#pullUp.loading .pullUpIcon {  
+#pullDown.loading .pullDownIcon,#pullUp.loading .pullUpIcon {  
     background-position:0 100%;  
     -webkit-transform:rotate(0deg) translateZ(0);  
     -webkit-transition-duration:0ms;  
     -webkit-animation-name:loading;  
     -webkit-animation-duration:2s;  
     -webkit-animation-iteration-count:infinite;  
-    -webkit-animation-timing-function:linear;  
+    -webkit-animation-timing-function:linear; 
 }   
 @-webkit-keyframes loading {  
     from { -webkit-transform:rotate(0deg) translateZ(0); }  
     to { -webkit-transform:rotate(360deg) translateZ(0); }  
-}  
+} 
 
 </style>
 </head>
@@ -100,7 +119,7 @@
 <!-- header start -->
 <header id="header">
 	<a href="pro_class_list.html" class="back">&lt;</a>
-	<h1>大板现货（<span>${prolist.total }</span>）</h1>
+	<h1>巴花现货<span>${prolist.total }</span></h1>
 </header>
  
 <!-- wrap start -->
@@ -173,12 +192,21 @@
 	
 
 	<div class="product_search">
-		<input id="searchInput" type="text" placeholder="请输入商品名称">
+	<c:if test="${not empty searchString.searchString }">
+		<input id="searchInput" type="text" value="${searchString.searchString }" placeholder="请输入商品名称">
 		<a href="#" id="searchString">搜索</a>
+	</c:if> 
+	 <c:if test="${empty searchString.searchString }">
+		<input id="searchInput" type="text"  placeholder="请输入商品名称">
+		<a href="#" id="searchString">搜索</a>
+	 </c:if> 
 	</div><!-- end search -->
 	
 	<div id="wrapperscr" style="overflow: hidden; left: 0px;">  
 	<div id="scroller" >
+	<div id="pullDown">
+			<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+	</div>
 	<ul class="pro_list" id="ulid">
 	<c:forEach items="${prolist.data}" var="pl">
 		<li>
@@ -201,10 +229,18 @@
 		</li>
 	</c:forEach>
 	</ul>
+	<c:if test="${not empty prolist.data  && fn:length(prolist.data)>=10}">
 	 <div id="pullUp">  
             <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>  
         </div>  
 	</div>
+	</c:if>
+	<c:if test="${empty prolist.data}">
+	 <div id="pullUp">  
+            <span class="pullUpLabel">暂无更多数据...</span>  
+        </div>  
+	</div>
+	</c:if>
 	</div>
 	<!-- backTop -->
 	<div id="backTop"><a href="javascript:;" class="btn-top"></a></div>
@@ -369,8 +405,8 @@ var rangeTwo={
 	rangeTwo.endHeight=${transmit.endHeight };
 	rangeTwo.edgeShape=${transmit.edgeShape };
 }); */
-/*  function pullDownAction () {  
-    $.ajax({  
+function pullDownAction () {  
+   /*  $.ajax({  
     url:"刷新的ajax请求",  
     type:"POST",  
     success:function(json){  
@@ -378,8 +414,9 @@ var rangeTwo={
         //...  
         myScroll.refresh();//刷新滑动区域  
     }  
-});  
-}   */ 
+});   */
+	location.href = "${ctx}/prolist";
+}   
 
 function pullUpAction () { 
 	 $("#pageSize").val(parseInt($("#pageSize").val())+1);
@@ -408,6 +445,9 @@ function pullUpAction () {
         //...  
         var obj= JSON.stringify(data);
         var c =$.parseJSON( data );
+        if(c.data.length<10){
+        	$("#pullUp").hide();
+        }
         if(c.data.length==0){
         	 $("#pullUp").hide();
         	 $("#pageSize").val(parseInt($("#pageSize").val())-1);
@@ -422,7 +462,7 @@ function pullUpAction () {
             +   '<div class="pro_info">' 
             +   '<h1>'+item.materialName+'</h1>' 
             +   '<p>长：'+item.length+' 厘米</p>' 
-            +   '<p>宽：'+item.width+' 厘米</p>' 
+            +   '<p>宽：'+item.widthName+' 厘米</p>' 
             +   '<p>厚：'+item.height+' 厘米</p>'
             +   '<p>编号：'+item.serialNo+'</p>'   
             +   '</div>'
@@ -452,8 +492,8 @@ myScroll.refresh();//刷新滑动区域
 }  
 
 function loaded() {  
-/* pullDownEl = document.getElementById('pullDown');  
-pullDownOffset = pullDownEl.offsetHeight;   */
+pullDownEl = document.getElementById('pullDown');  
+pullDownOffset = pullDownEl.offsetHeight;   
 pullUpEl = document.getElementById('pullUp');     
 pullUpOffset = pullUpEl.offsetHeight;  
   
@@ -461,16 +501,16 @@ myScroll = new iScroll('wrapperscr', {
     useTransition: true,  
     topOffset: pullDownOffset,  
     onRefresh: function () {//myScroll刷新时触发  
-       /*  if (pullDownEl.className.match('loading')) {  
+         if (pullDownEl.className.match('loading')) {  
             pullDownEl.className = '';  
             pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';  
-        } else  */if (pullUpEl.className.match('loading')) {  
+        } else  if (pullUpEl.className.match('loading')) {  
             pullUpEl.className = '';  
             pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';  
         }  
     },  
     onScrollMove: function () {//上下滑动时触发  
-        /* if (this.y > 5 && !pullDownEl.className.match('flip')) {  
+         if (this.y > 5 && !pullDownEl.className.match('flip')) {  
             pullDownEl.className = 'flip';  
             pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放立即加载...';  
             this.minScrollY = 0;  
@@ -478,7 +518,7 @@ myScroll = new iScroll('wrapperscr', {
             pullDownEl.className = '';  
             pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';  
             this.minScrollY = -pullDownOffset;  
-        } else */ if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {  
+        } else  if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {  
             pullUpEl.className = 'flip';  
             pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放立即加载...';  
             this.maxScrollY = this.maxScrollY;  
@@ -489,17 +529,18 @@ myScroll = new iScroll('wrapperscr', {
         }  
     },  
     onScrollEnd: function () {//上下滑到底部时触发  
-       /*  if (pullDownEl.className.match('flip')) {  
+         if (pullDownEl.className.match('flip')) {  
             pullDownEl.className = 'loading';  
             pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';                  
             pullDownAction();//在这里定义下拉时的行为  
-        } else */ if (pullUpEl.className.match('flip')) {  
+        } else  if (pullUpEl.className.match('flip')) {  
             pullUpEl.className = 'loading';  
             pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';                  
             pullUpAction();//在这里定义上拉时的行为  
         }  
     }  
-});  
+});
+setTimeout(function () { document.getElementById('wrapperscr').style.offsetleft = '10'; }, 800); 
 }  
 
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);  
