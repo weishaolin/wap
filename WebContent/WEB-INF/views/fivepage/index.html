@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript">
+	if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+		var version = parseFloat(RegExp.$1);
+		if(version>2.3){
+			var phoneScale = parseInt(window.screen.width)/750;
+			document.write('<meta name="viewport" content="width=750, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+		}else{
+			document.write('<meta name="viewport" content="width=750, target-densitydpi=device-dpi">');
+		}
+	}else{
+		document.write('<meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">');
+	};
+</script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="">
+<title>现货网站系统</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<!-- header start -->
+<header id="header">
+	<h1>现货网站系统</h1>
+</header>
+
+<!-- wrap start -->
+<div id="wrapper" class="wrap">
+	<div class="pro_class">
+		<div class="banner">
+			<img src="image/banner1.jpg"/>
+		</div>
+		<p class="pro_number">123</p>
+		<a href="pro_class_list.html" class="more">原木<span>查看更多》</span></a>
+	</div>
+	<div class="pro_class">
+		<div class="banner">
+			<img src="image/banner2.jpg"/>
+		</div>
+		<p class="pro_number">120</p>
+		<a href="pro_class_list.html" class="more">大板<span>查看更多》</span></a>
+	</div>
+	<div class="pro_class">
+		<div class="banner">
+			<img src="image/banner3.jpg"/>
+		</div>
+		<p class="pro_number">103</p>
+		<a href="pro_class_list.html" class="more">供应<span>查看更多》</span></a>
+	</div>
+</div>
+<!-- wrap end -->
+<script type="text/javascript" src="js/jquery-2.1.3.min.js" ></script>
+<script type="text/javascript" src="js/common.js" ></script>
+</body>
+</html>
