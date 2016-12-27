@@ -145,7 +145,7 @@ section, div, p, h1, h2, h3, h4, h5, h6, ul, li, dl, dt, dd, ol, strong, span, s
 .pro_class .more span{float:right;}
 
 .class_list{width:100%;padding:20px 0 0 20px;}
-.class_list li{float:left;position:relative;width:345px;height:300px;margin:0 20px 20px 0}
+.class_list li{float:left;position:relative;width:345px;height:70px;margin:0 20px 20px 0}
 .class_list li .img{width:100%;height:100%;}
 .class_list li .img img{width:100%;height:100%;}
 .class_list li .pro_number{position:absolute;right:0;top:0;padding:5px 10px;color:#FFF;background-color:#FF0000}

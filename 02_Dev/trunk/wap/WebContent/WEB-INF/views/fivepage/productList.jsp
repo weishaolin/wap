@@ -118,8 +118,8 @@ margin:0px 0px;
 <input type="hidden" name="pageSize" id="pageSize" value="0" />   
 <!-- header start -->
 <header id="header">
-	<a href="pro_class_list.html" class="back">&lt;</a>
-	<h1>巴花现货<span>${prolist.total }</span></h1>
+	<a href="${ctx }/category/list" class="back">&lt;</a>
+	<h1>大板现货<span>${prolist.total }</span></h1>
 </header>
  
 <!-- wrap start -->
@@ -132,10 +132,10 @@ margin:0px 0px;
 		</ul><!-- end select -->
 		<div class="sel_wrap tab_sort">
 			<ul class="sel_cont">
-				<li><a href="${ctx}/sortProperty?sortProperty=LENGTH">长度最长</a></li>
-				<li><a href="${ctx}/sortProperty?sortProperty=PRICE">立方最贵</a></li>
-				<li><a href="${ctx}/sortProperty?sortProperty=MODIFIEDTIME">最多人看</a></li>
-				<li><a href="${ctx}/sortProperty?sortProperty=VIEWCOUNT">最新发布</a></li>
+				<li><a href="${ctx}/product/sortProperty?sortProperty=LENGTH">长度最长</a></li>
+				<li><a href="${ctx}/product/sortProperty?sortProperty=PRICE">立方最贵</a></li>
+				<li><a href="${ctx}/product/sortProperty?sortProperty=MODIFIEDTIME">最多人看</a></li>
+				<li><a href="${ctx}/product/sortProperty?sortProperty=VIEWCOUNT">最新发布</a></li>
 			</ul>
 		</div>
 		<div class="sel_wrap tab_screen">
@@ -152,7 +152,7 @@ margin:0px 0px;
 					<li><a href="javascript:;">350-450</a></li>
 					<li><a href="javascript:;">450以上</a></li>
 				</ul>
-				<p>自定义：<input id="bl" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="el" type="text"></p>
+				<!-- <p>自定义：<input id="bl" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="el" type="text"></p> -->
 			</div>
 			<div class="screen_list">
 				<h1>宽度区间（cm）</h1>
@@ -164,7 +164,7 @@ margin:0px 0px;
 					<li><a href="javascript:;">240-270</a></li>
 					<li><a href="javascript:;">270-300</a></li>
 				</ul>
-				<p>自定义：<input id="bw" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="ew" type="text"></p>
+				<!-- <p>自定义：<input id="bw" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="ew" type="text"></p> -->
 			</div>
 			<div class="screen_list">
 				<h1>厚度区间（cm）</h1>
@@ -174,7 +174,7 @@ margin:0px 0px;
 					<li><a href="javascript:;">180-210</a></li>
 					<li><a href="javascript:;">210-240</a></li>
 				</ul>
-				<p>自定义：<input id="bh" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="eh" type="text"></p>
+				<!-- <p>自定义：<input id="bh" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="eh" type="text"></p> -->
 			</div>
 			<div class="screen_list">
 				<h1>边型</h1>
@@ -210,15 +210,15 @@ margin:0px 0px;
 	<ul class="pro_list" id="ulid">
 	<c:forEach items="${prolist.data}" var="pl">
 		<li>
-			<a href="${ctx}/productinfo?uid=${pl.id}">
+			<a href="${ctx}/product/info?uid=${pl.id}">
 				<div class="pro_pic">
 					<img src="http://112.74.213.8:83/genu-wss-app${pl.productFirstAlbum}"/>
 				</div>
 				<div class="pro_info">
 					<h1>${pl.materialName}</h1>
-					<p>长：${pl.length}厘米</p>
-					<p>宽：${pl.widthName}</p>
-					<p>厚：${pl.height}厘米</p>
+					<p>长：${pl.length} 厘米</p>
+					<p>宽：${pl.widthName} 厘米</p>
+					<p>厚：${pl.height} 厘米</p>
 					<p>编号：${pl.serialNo}</p>
 				</div>
 				<c:if test="${pl.status=='BOOKING'}">
@@ -269,7 +269,7 @@ var range = {
 var sear=new RegExp('-');
 	$("#searchString").click(function(){
 		var inputVal=$("#searchInput").val();
-		location.href = "${ctx}/searchString?searchString="+inputVal;
+		location.href = "${ctx}/product/searchString?searchString="+inputVal;
 	});
 	//长
 	$("#lengthId li").click(function(){
@@ -358,7 +358,7 @@ var sear=new RegExp('-');
 		 result.endHeight=range.endHeight
 		 result.edgeShape=range.edgeShape
 		 var pro = JSON.stringify(result);
-		 location.href = "${ctx}/screen?data="+pro;
+		 location.href = "${ctx}/product/screen?data="+pro;
 	 	  /*$.post("${ctx}/screen",pro,function(data,status){
 		        alert("Data: " + pro + "nStatus: " + status);
 		    }); */
@@ -415,7 +415,7 @@ function pullDownAction () {
         myScroll.refresh();//刷新滑动区域  
     }  
 });   */
-	location.href = "${ctx}/prolist";
+	location.href = "${ctx}/product/list";
 }   
 
 function pullUpAction () { 
@@ -436,7 +436,7 @@ function pullUpAction () {
 	var obj= JSON.stringify(object);
 	var content=""; 
    $.ajax({  
-    url:"${ctx}/pullUp?pullUp="+obj,  
+    url:"${ctx}/product/pullUp?pullUp="+obj,  
     type:"POST",  
    // data :obj,//数据，这里使用的是Json格式进行传输  
     contentType : "application/json",
@@ -455,7 +455,7 @@ function pullUpAction () {
         $.each(eval("("+data+")").data, function(i, item) {
         	content=content  
             +   '<li>'  
-            +   '<a href="${ctx}/productinfo?uid='+item.id+'">' 
+            +   '<a href="${ctx}/product/info?uid='+item.id+'">' 
             +   '<div class="pro_pic">'
             +   '<img src="http://112.74.213.8:83/genu-wss-app'+item.productFirstAlbum+'"/>' 
             +   '</div>' 
