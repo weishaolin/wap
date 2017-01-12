@@ -1,12 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%> 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<script src="http://s95.cnzz.com/z_stat.php?id=1259853994&web_id=1259853994" language="JavaScript"></script>
 <script type="text/javascript">
 	if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
 		var version = parseFloat(RegExp.$1);
@@ -24,35 +22,50 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <meta name="description" content="">
-<title>现货网站系统-大板现货</title>
+<title>现货网站系统</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
 </head>
 <body>
 <!-- header start -->
 <header id="header">
-	<a href="#" class="back">&lt;</a>
-	<h1>木种</h1>
+	<a href="#" class="back"  onclick="self.location=document.referrer;">&lt;</a>
+	<h1>供求产品详情</h1>
 </header>
 
 <!-- wrap start -->
 <div id="wrapper" class="wrap">
-	<ul class="class_list clearFix">
-	<c:forEach items="${categoryList.data}" var="ca">
-		<c:if test="${ ca.productCount>0}">
-		<li>
-			<a href="${ctx}/product/list/material?materialId=${ca.id}">${ca.name } ${ca.productCount}<span>查看更多></span></a>
-		</li>
+	<div class="pro_details">
+		<div class="detail_title">
+		<c:if test="${prolist.data.requestType =='BUY'}">
+	 		<h1>求购</h1>
 		</c:if>
-	</c:forEach>	
-	<c:if test="${ sellBuyList.total>0}">
-		<li>
-			<a href="${ctx}/sellBuyInfo/list">其他产品  ${sellBuyList.total}<span>查看更多></span></a>
-		</li>
+		<c:if test="${prolist.data.requestType =='SELL'}">
+	 		<h1>供应</h1>
 		</c:if>
-	</ul>
+			<p>${prolist.data.content}${prolist.data.length}*${prolist.data.width}*${prolist.data.height}</p>
+		</div>
+		<ul class="info_list">
+			<li><span>长&emsp;度（cm）</span>${prolist.data.length}</li>
+			<li><span>宽&emsp;度（cm）</span>${prolist.data.width}</li>
+			<li><span>厚&emsp;度（cm）</span>${prolist.data.height}</li>
+			<li><span>供求数量</span>${prolist.data.number}</li>
+			<%-- <li><span>重&emsp;量（kg）${prolist.data.weight}</span></li> --%>
+		</ul>
+		<div class="pro_pic">
+			<h1>供求图片</h1>
+			<c:forEach items="${productAlbum}" var="pa">
+			<a href="http://112.74.213.8:83/genu-wss-app${pa.image}">
+			<img src="http://112.74.213.8:83/genu-wss-app${pa.image}"/>
+			</a>
+			</c:forEach>
+		</div>
+	</div>
+	<!-- backTop -->
+	<div id="backTop"><a href="javascript:;" class="btn-top"></a></div>
 </div>
 <!-- wrap end -->
 <script type="text/javascript" src="${ctx}/scripts/fivestyle/js/jquery-2.1.3.min.js" ></script>
 <script type="text/javascript" src="${ctx}/scripts/fivestyle/js/common.js" ></script>
+<script type="text/javascript" src="${ctx}/scripts/fivestyle/js/backtop.js" ></script>
 </body>
 </html>

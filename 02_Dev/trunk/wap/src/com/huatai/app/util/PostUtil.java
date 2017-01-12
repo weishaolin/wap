@@ -181,7 +181,7 @@ public class PostUtil {
 		return rs; 
 	}
 	
-	//详情页面url
+	//产品详情页面url
 	public String formDataPostInfo(HashMap<String, Object> map){
 		String url="http://112.74.213.8:82/product/info";
 	    HttpURLConnection connection = null;  
@@ -280,9 +280,10 @@ public class PostUtil {
 	    }
 		return rs; 
 	}
-
+	
+	//木种列表
 	public String formDataPostCategoryList(HashMap<String, Object> map){
-		String url="http://112.74.213.8:82/category/list";
+		String url="http://112.74.213.8:82/category/web/list";
 	    HttpURLConnection connection = null;  
 	    OutputStream outputStream = null;  
 	    String rs = null;  
@@ -380,4 +381,204 @@ public class PostUtil {
 		return rs; 
 	}
 	
+	//供求列表
+	public String formDataPostSellBuyInfoList(HashMap<String, Object> map){
+			String url="http://112.74.213.8:82/sellBuyInfo/list";
+		    HttpURLConnection connection = null;  
+		    OutputStream outputStream = null;  
+		    String rs = null;  
+		    try { 
+		    	URL urls = new URL(url); 
+		        connection = (HttpURLConnection) urls.openConnection();  
+		        connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=----footfoodapplicationrequestnetwork");  
+		        connection.setDoOutput(true);  
+		        connection.setDoInput(true);  
+		        connection.setRequestProperty("Accept-Language", "zh-CN,zh;q=0.8");  
+		        connection.setRequestProperty("Accept", "*/*");  
+		        connection.setRequestProperty("Range", "bytes="+"");  
+		        connection.setConnectTimeout(8000);  
+		        connection.setReadTimeout(20000);  
+		        connection.setRequestMethod("POST");  
+		        StringBuffer buffer = new StringBuffer();  
+		        int len = 0;  
+		       /* if(parameter != null)  
+		            len = parameter.size();  */
+		          
+		        Iterator<Entry<String, Object>> it = map.entrySet().iterator();
+		        while(it.hasNext()){
+		        	java.util.Map.Entry entry = (java.util.Map.Entry)it.next();
+		        	 buffer.append("------footfoodapplicationrequestnetwork\r\n");  
+			            buffer.append("Content-Disposition: form-data; name=\"");  
+			            buffer.append(entry.getKey());  
+			            
+			            buffer.append("\"\r\n\r\n");  
+			            buffer.append(entry.getValue());
+			           
+			            buffer.append("\r\n");
+		        	}
+		        /*for(int i = 0; i < map.size(); i++) { 
+		            buffer.append("------footfoodapplicationrequestnetwork\r\n");  
+		            buffer.append("Content-Disposition: form-data; name=\"");  
+		            buffer.append();  
+		            
+		            buffer.append("\"\r\n\r\n");  
+		            buffer.append("1");
+		           
+		            buffer.append("\r\n");
+		        } */ 
+//		            buffer.append("sortProperty"); 
+//		            buffer.append("LENGTH"); 
+		      /*  if(parameter != null)  */
+		            buffer.append("------footfoodapplicationrequestnetwork--\r\n");  
+		        try {  
+		        	outputStream = connection.getOutputStream();
+					outputStream.write(buffer.toString().getBytes());  
+		            connection.connect();  
+		            if(connection.getResponseCode() == 200) {  
+//		                rs = getWebSource(connection.getInputStream());  
+		            	rs=connection.getInputStream().toString();
+		            	BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+		                String line="";
+		                String res = "";
+//		                System.out.println(reader.readLine());
+		                while ((line = reader.readLine()) != null){
+		                	res += line;
+		                }
+//		                System.out.println(res);
+		               
+		/*                JSONObject json = JSONObject.fromObject(res);
+//		                System.out.println(json);
+		                System.out.println(json.getString("data"));
+		                JSONArray jsonArray = json.getJSONArray("data");
+		                for (int i = 0; i < jsonArray.size(); i++) {
+							System.out.println(jsonArray.get(i));
+						}
+		                System.out.println(jsonArray.get(0));*/
+		                reader.close();
+		                return res;
+		            }  
+		        }  
+		        catch (Exception e) {  
+		            rs = null;  
+		        }  
+		          
+//		        return res; 
+		       
+		    }catch (Exception e) {
+			}
+		    finally {  
+		        try {  
+		            outputStream.close();  
+		        }  
+		        catch (Exception e) {  
+		        }  
+		        outputStream = null;  
+		          
+		        if(connection != null)  
+		            connection.disconnect();  
+		        connection = null;  
+		    }
+			return rs; 
+		}
+		
+	//供求详情页面url
+	public String formDataPostSellBuyInfo(HashMap<String, Object> map){
+			String url="http://112.74.213.8:82/sellBuyInfo/info";
+		    HttpURLConnection connection = null;  
+		    OutputStream outputStream = null;  
+		    String rs = null;  
+		    try { 
+		    	URL urls = new URL(url); 
+		        connection = (HttpURLConnection) urls.openConnection();  
+		        connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=----footfoodapplicationrequestnetwork");  
+		        connection.setDoOutput(true);  
+		        connection.setDoInput(true);  
+		        connection.setRequestProperty("Accept-Language", "zh-CN,zh;q=0.8");  
+		        connection.setRequestProperty("Accept", "*/*");  
+		        connection.setRequestProperty("Range", "bytes="+"");  
+		        connection.setConnectTimeout(8000);  
+		        connection.setReadTimeout(20000);  
+		        connection.setRequestMethod("POST");  
+		        StringBuffer buffer = new StringBuffer();  
+		        int len = 0;  
+		       /* if(parameter != null)  
+		            len = parameter.size();  */
+		          
+		        Iterator<Entry<String, Object>> it = map.entrySet().iterator();
+		        while(it.hasNext()){
+		        	java.util.Map.Entry entry = (java.util.Map.Entry)it.next();
+		        	 buffer.append("------footfoodapplicationrequestnetwork\r\n");  
+			            buffer.append("Content-Disposition: form-data; name=\"");  
+			            buffer.append(entry.getKey());  
+			            
+			            buffer.append("\"\r\n\r\n");  
+			            buffer.append(entry.getValue());
+			           
+			            buffer.append("\r\n");
+		        	}
+		        /*for(int i = 0; i < map.size(); i++) { 
+		            buffer.append("------footfoodapplicationrequestnetwork\r\n");  
+		            buffer.append("Content-Disposition: form-data; name=\"");  
+		            buffer.append();  
+		            
+		            buffer.append("\"\r\n\r\n");  
+		            buffer.append("1");
+		           
+		            buffer.append("\r\n");
+		        } */ 
+//		            buffer.append("sortProperty"); 
+//		            buffer.append("LENGTH"); 
+		      /*  if(parameter != null)  */
+		            buffer.append("------footfoodapplicationrequestnetwork--\r\n");  
+		        try {  
+		        	outputStream = connection.getOutputStream();
+					outputStream.write(buffer.toString().getBytes());  
+		            connection.connect();  
+		            if(connection.getResponseCode() == 200) {  
+//		                rs = getWebSource(connection.getInputStream());  
+		            	rs=connection.getInputStream().toString();
+		            	BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
+		                String line="";
+		                String res = "";
+//		                System.out.println(reader.readLine());
+		                while ((line = reader.readLine()) != null){
+		                	res += line;
+		                }
+//		                System.out.println(res);
+		               
+		/*                JSONObject json = JSONObject.fromObject(res);
+//		                System.out.println(json);
+		                System.out.println(json.getString("data"));
+		                JSONArray jsonArray = json.getJSONArray("data");
+		                for (int i = 0; i < jsonArray.size(); i++) {
+							System.out.println(jsonArray.get(i));
+						}
+		                System.out.println(jsonArray.get(0));*/
+		                reader.close();
+		                return res;
+		            }  
+		        }  
+		        catch (Exception e) {  
+		            rs = null;  
+		        }  
+		          
+//		        return res; 
+		       
+		    }catch (Exception e) {
+			}
+		    finally {  
+		        try {  
+		            outputStream.close();  
+		        }  
+		        catch (Exception e) {  
+		        }  
+		        outputStream = null;  
+		          
+		        if(connection != null)  
+		            connection.disconnect();  
+		        connection = null;  
+		    }
+			return rs; 
+		}
+		
 }

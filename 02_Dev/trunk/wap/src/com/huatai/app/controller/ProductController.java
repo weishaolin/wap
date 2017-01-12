@@ -40,7 +40,7 @@ public class ProductController {
 	} 
 	//list界面
 		@RequestMapping(value="/list/material",method = RequestMethod.GET)
-		public  String productListByMaterial(@RequestParam(value="materialId") String materialId,Model model){
+	public  String productListByMaterial(@RequestParam(value="materialId") String materialId,Model model){
 			System.out.println("進入");
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("currentUserId", "1");
@@ -50,21 +50,25 @@ public class ProductController {
 			JSONObject json = JSONObject.fromObject(formDataPost);
 //			JSONArray jsonArray = json.getJSONArray(json);
 			model.addAttribute("prolist", json);
+			model.addAttribute("materialId", materialId);
 			System.out.println("model:"+model);
 			return "fivepage/productList";
 		} 
 	//长度最长
 	@RequestMapping(value="/sortProperty",method = RequestMethod.GET)
-	public  String sortProperty(@RequestParam(value="sortProperty") String sortProperty, Model model){
+	public  String sortProperty(@RequestParam(value="sortProperty") String sortProperty, 
+			@RequestParam(value="materialId") String materialId,Model model){
 		System.out.println("進入:"+sortProperty);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("currentUserId", "1");
 		map.put("sortProperty", sortProperty);
+		map.put("material", materialId);
 		String formDataPost = postUtil.formDataPost(map);
 		System.out.println("formDataPost："+formDataPost);
 		JSONObject json = JSONObject.fromObject(formDataPost);
 		model.addAttribute("prolist", json);
 		model.addAttribute("sortProperty", map);
+		model.addAttribute("materialId", materialId);
 		System.out.println("model:"+model);
 		return "fivepage/productList";
 	}
@@ -88,10 +92,10 @@ public class ProductController {
 		//筛选
 	@RequestMapping(value="/screen")
 	public  String screen(@RequestParam(value="data") String data, Model  model){
-		System.out.println("進入:"+data);
+//		System.out.println("進入:"+data);
 		JSONObject jb=JSONObject.fromObject(data);
-		System.out.println("jb:"+jb.getString("beginWidth").length());
-		System.out.println("jb2:"+jb.getString("beginLength").length());
+//		System.out.println("jb:"+jb.getString("beginWidth").length());
+//		System.out.println("jb2:"+jb.getString("beginLength").length());
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("currentUserId", "1");
 		if(jb.getString("beginLength").length()>0 && jb.getString("endLength").length()>0){
@@ -101,7 +105,7 @@ public class ProductController {
 		if(jb.getString("beginWidth").length()>0 && jb.getString("endWidth").length()>0){
 			map.put("beginWidth",jb.getString("beginWidth"));
 			map.put("endWidth", jb.getString("endWidth"));
-			System.out.println("width:"+"jjjjjjjjjjjjjjjjjj");
+//			System.out.println("width:"+"jjjjjjjjjjjjjjjjjj");
 		}
 		if(jb.getString("beginHeight").length()>0 && jb.getString("endHeight").length()>0){
 			map.put("beginHeight", jb.getString("beginHeight"));
@@ -113,11 +117,19 @@ public class ProductController {
 		if(jb.getString("edgeShape").length()>0){
 			map.put("edgeShape",jb.getString("edgeShape"));
 		}
+		if(jb.getString("material").length()>0){
+			map.put("material",jb.getString("material"));
+		}
+		if(jb.getString("searchString").length()>0){
+			map.put("searchString", jb.getString("searchString"));
+			model.addAttribute("searchString", jb.getString("searchString"));
+		}
 		System.out.println("map:"+map);
 		String formDataPost = postUtil.formDataPost(map);
 		System.out.println("formDataPost："+formDataPost);
 		JSONObject json = JSONObject.fromObject(formDataPost);
 		model.addAttribute("prolist", json);
+		model.addAttribute("materialId", jb.getString("material"));
 		JSONObject transmit = JSONObject.fromObject(map);
 		System.out.println("transmit:"+transmit);
 		model.addAttribute("transmit", transmit);
@@ -158,11 +170,15 @@ public class ProductController {
 		if(jb.getString("searchString").length()>0){
 			map.put("searchString",jb.getString("searchString"));
 		}
+		if(jb.getString("material").length()>0){
+			map.put("material",jb.getString("material"));
+		}
 		System.out.println("map:"+map);
 		String formDataPost = postUtil.formDataPost(map);
 		System.out.println("formDataPost："+formDataPost);
 		JSONObject json = JSONObject.fromObject(formDataPost);
 		model.addAttribute("prolist", json);
+		model.addAttribute("materialId", jb.getString("material"));
 /*		JSONObject transmit = JSONObject.fromObject(map);
 		System.out.println("transmit:"+transmit);
 		model.addAttribute("transmit", transmit);*/

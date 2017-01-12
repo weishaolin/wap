@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<script src="http://s95.cnzz.com/z_stat.php?id=1259853994&web_id=1259853994" language="JavaScript"></script>
 <script type="text/javascript">
 	if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
 		var version = parseFloat(RegExp.$1);
@@ -22,7 +23,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <meta name="description" content="">
-<title>现货网站系统</title>
+<title>${prolist.data.materialName}${prolist.data.length}*${prolist.data.widthName}*${prolist.data.height}</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
 </head>
 <body>
@@ -37,14 +38,27 @@
 	<div class="pro_details">
 		<div class="detail_title">
 			<h1>${prolist.data.material}</h1>
+			<c:if test="${prolist.data.productType =='TABLE_BORDER' }">
 			<p>${prolist.data.materialName}${prolist.data.length}*${prolist.data.widthName}*${prolist.data.height}</p>
+			</c:if>
+			<c:if test="${prolist.data.productType =='WOOD' }">
+			<p>${prolist.data.materialName}${prolist.data.length}*${prolist.data.diameter}</p>
+			</c:if>
 		</div>
 		<ul class="info_list">
+		 <c:if test="${prolist.data.productType =='TABLE_BORDER' }">
 			<li><span>长&emsp;度（cm）</span>${prolist.data.length}</li>
 			<li><span>宽&emsp;度（cm）</span>${prolist.data.widthName}</li>
 			<li><span>厚&emsp;度（cm）</span>${prolist.data.height}</li>
 			<li><span>立方数（m<font>3</font>）</span>${prolist.data.cubage}</li>
 			<%-- <li><span>重&emsp;量（kg）${prolist.data.weight}</span></li> --%>
+		</c:if>
+		<c:if test="${prolist.data.productType =='WOOD' }">
+			<li><span>长&emsp;度（米）</span>${prolist.data.length}</li>
+			<li><span>直径（cm）</span>${prolist.data.diameter}</li>
+			<li><span>立方数（m<font>3</font>）</span>${prolist.data.cubage}</li>
+			<%-- <li><span>重&emsp;量（kg）${prolist.data.weight}</span></li> --%>
+		</c:if>
 		</ul>
 		<div class="pro_pic">
 			<h1>产品图片</h1>

@@ -24,12 +24,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <meta name="description" content="">
-<title>产品列表</title>
+<title>供求列表</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
 <style type="text/css">
 #wrapperscr {
 	position:absolute; z-index:1;
-	top:280px; bottom:48px; left:0;
+	top:300px; bottom:48px; left:0;
 	width:100%;
 	 /* background:#555; */
 	overflow:auto;
@@ -61,7 +61,7 @@ margin:0px 0px;
 } 
 #pullDown,#pullUp {  
     background:#fff;  
-    height:60px;  
+    height:90px;  
     line-height:40px;  
     padding:0px 230px;
     border-bottom:1px solid #ccc;  
@@ -120,23 +120,21 @@ margin:0px 0px;
 <!-- header start -->
 <header id="header">
 	<a href="${ctx }/category/list" class="back">&lt;</a>
-	<h1>大板现货<span>${prolist.total }</span></h1>
+	<h1>供求产品<span>${prolist.total }</span></h1>
 </header>
  
 <!-- wrap start -->
 <div id="wrapper" class="wrap">
-	
-	
 		<ul class="pro_select clearFix">
 			<li class="pro_sort">排序<i></i></li>
 			<li class="pro_screen">筛选<i></i></li>
 		</ul><!-- end select -->
 		<div class="sel_wrap tab_sort">
 			<ul class="sel_cont">
-				<li><a href="${ctx}/product/sortProperty?sortProperty=LENGTH&materialId=${materialId}">长度最长</a></li>
-				<li><a href="${ctx}/product/sortProperty?sortProperty=PRICE&materialId=${materialId}">立方最贵</a></li>
-				<li><a href="${ctx}/product/sortProperty?sortProperty=MODIFIEDTIME&materialId=${materialId}">最多人看</a></li>
-				<li><a href="${ctx}/product/sortProperty?sortProperty=VIEWCOUNT&materialId=${materialId}">最新发布</a></li>
+				<li><a href="${ctx}/sellBuyInfo/sortProperty?sortProperty=LENGTH&materialId=${materialId}">长度最长</a></li>
+				<li><a href="${ctx}/sellBuyInfo/sortProperty?sortProperty=PRICE&materialId=${materialId}">立方最贵</a></li>
+				<li><a href="${ctx}/sellBuyInfo/sortProperty?sortProperty=MODIFIEDTIME&materialId=${materialId}">最多人看</a></li>
+				<li><a href="${ctx}/sellBuyInfo/sortProperty?sortProperty=VIEWCOUNT&materialId=${materialId}">最新发布</a></li>
 			</ul>
 		</div>
 		<div class="sel_wrap tab_screen">
@@ -153,44 +151,42 @@ margin:0px 0px;
 					<li><a href="javascript:;">350-450</a></li>
 					<li><a href="javascript:;">450以上</a></li>
 				</ul>
-				<!-- <p>自定义：<input id="bl" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="el" type="text"></p> -->
+				
 			</div>
 			<div class="screen_list">
 				<h1>宽度区间（cm）</h1>
 				<ul id="widthId" class="clearFix">
-					<li><a href="javascript:;">60以下</a></li>
-					<li><a href="javascript:;">60-80</a></li>
-					<li><a href="javascript:;">80-120</a></li>
-					<li><a href="javascript:;">120-140</a></li>
-					<li><a href="javascript:;">140以上</a></li>
+					<li><a href="javascript:;">150以下</a></li>
+					<li><a href="javascript:;">150-180</a></li>
+					<li><a href="javascript:;">180-210</a></li>
+					<li><a href="javascript:;">210-240</a></li>
+					<li><a href="javascript:;">240-270</a></li>
+					<li><a href="javascript:;">270-300</a></li>
 				</ul>
-				<!-- <p>自定义：<input id="bw" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="ew" type="text"></p> -->
 			</div>
-			<div class="screen_list">
+			<!-- <div class="screen_list">
 				<h1>厚度区间（cm）</h1>
 				<ul id="heigthId" class="clearFix">
-					<li><a href="javascript:;">8以下</a></li>
-					<li><a href="javascript:;">8-10</a></li>
-					<li><a href="javascript:;">10-120</a></li>
-					<li><a href="javascript:;">12以上</a></li>
+					<li><a href="javascript:;">150以下</a></li>
+					<li><a href="javascript:;">150-180</a></li>
+					<li><a href="javascript:;">180-210</a></li>
+					<li><a href="javascript:;">210-240</a></li>
 				</ul>
-				<!-- <p>自定义：<input id="bh" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="eh" type="text"></p> -->
-			</div>
-			<div class="screen_list">
+			</div> -->
+			<!-- <div class="screen_list">
 				<h1>边型</h1>
 				<ul id="edgeShapeId" class="clearFix">
 					<li value="1"><a href="javascript:;">全方</a></li>
 					<li value="2"><a href="javascript:;">半方</a></li>
 					<li value="3"><a href="javascript:;">自然边</a></li>
 				</ul>
-			</div>
+			</div> -->
 			<div class="screenBtn">
 				<a class="btn floatL" href="javascript:;" id="del">清空条件</a>
 				<a id="submit" class="btn floatR" href="javascript:;">确定</a>
 			</div>
 		</div>
 	
-
 	<div class="product_search">
 	<c:if test="${not empty searchString }">
 		<input id="searchInput" type="text" value="${searchString }" placeholder="请输入商品名称">
@@ -210,19 +206,24 @@ margin:0px 0px;
 	<ul class="pro_list" id="ulid">
 	<c:forEach items="${prolist.data}" var="pl">
 		<li>
-			<a href="${ctx}/product/info?uid=${pl.id}">
+			<a href="${ctx}/sellBuyInfo/info?uid=${pl.id}">
 				<div class="pro_pic">
-					<img src="http://112.74.213.8:83/genu-wss-app${pl.productFirstAlbum}"/>
+					<img src="http://112.74.213.8:83/genu-wss-app${pl.sellBuyAlbum}"/>
 				</div>
 				<div class="pro_info">
-					<h1>${pl.materialName}</h1>
+				  <c:if test="${fn:length(pl.content)>15}">
+				  	<h1>${fn:substring(pl.content,0,14)}...</h1>
+				  </c:if>
+					<c:if test="${fn:length(pl.content)<=15}">
+				  	<h1>${pl.content}</h1>
+				  </c:if>
 					<p>长：${pl.length} 厘米</p>
 					<p>宽：${pl.widthName} 厘米</p>
 					<p>厚：${pl.height} 厘米</p>
-					<p>编号：${pl.serialNo}</p>
+					<p>数量：${pl.number}</p>
 				</div>
-				<c:if test="${pl.status=='BOOKING'}">
-					<span>待定</span>
+				<c:if test="${pl.requestType=='BUY'}">
+					<span>求购</span>
 				</c:if>
 			</a>
 			
@@ -280,8 +281,8 @@ var sear=new RegExp('-');
 		 result.material = "${materialId}";
 		 result.searchString = inputVal;
 		 var pro = JSON.stringify(result);
-		//location.href = "${ctx}/product/searchString?searchString="+pro;
-		 location.href = "${ctx}/product/screen?data="+pro;
+		//location.href = "${ctx}/sellBuyInfo/searchString?searchString="+pro;
+		 location.href = "${ctx}/sellBuyInfo/screen?data="+pro;
 	});
 	//长
 	$("#lengthId li").click(function(){
@@ -289,6 +290,7 @@ var sear=new RegExp('-');
 		range.length=$(this).text();
 		if(sear.test(range.length)){
 		}else{
+			
 			if(range.length.substring(0,3)=="150"){
 				range.length="0-150";
 			}else{
@@ -307,10 +309,8 @@ var sear=new RegExp('-');
 		range.width=$(this).text();
 		if(sear.test(range.width)){
 		}else{
-			if(range.width.substring(0,2)=="60"){
-				range.width="0-60";
-			}else{
-				range.length="140-1000";
+			if(range.width.substring(0,3)=="150"){
+				range.width="0-150";
 			}
 		}
 		var wdi=range.width.split('-');
@@ -325,10 +325,8 @@ var sear=new RegExp('-');
 		range.Height=$(this).text();
 		if(sear.test(range.Height)){
 		}else{
-			if(range.Height.substring(0,1)=="8"){
-				range.Height="0-8";
-			}else{
-				range.length="12-1000";
+			if(range.Height.substring(0,3)=="150"){
+				range.Height="0-150";
 			}
 		}
 		var hgi=range.Height.split('-');
@@ -375,7 +373,7 @@ var sear=new RegExp('-');
 		 result.material = "${materialId}";
 		 result.searchString=$("#searchStr").val();
 		 var pro = JSON.stringify(result);
-		 location.href = "${ctx}/product/screen?data="+pro;
+		 location.href = "${ctx}/sellBuyInfo/screen?data="+pro;
 	 	  /*$.post("${ctx}/screen",pro,function(data,status){
 		        alert("Data: " + pro + "nStatus: " + status);
 		    }); */
@@ -432,7 +430,7 @@ function pullDownAction () {
         myScroll.refresh();//刷新滑动区域  
     }  
 });   */
-	location.href = "${ctx}/product/list/material?materialId=${materialId}";
+	location.href = "${ctx}/sellBuyInfo/list/material?materialId=${materialId}";
 }   
 
 function pullUpAction () { 
@@ -453,7 +451,7 @@ function pullUpAction () {
 	var obj= JSON.stringify(object);
 	var content=""; 
    $.ajax({  
-    url:"${ctx}/product/pullUp?pullUp="+obj,  
+    url:"${ctx}/sellBuyInfo/pullUp?pullUp="+obj,  
     type:"POST",  
    // data :obj,//数据，这里使用的是Json格式进行传输  
     contentType : "application/json",
@@ -472,9 +470,9 @@ function pullUpAction () {
         $.each(eval("("+data+")").data, function(i, item) {
         	content=content  
             +   '<li>'  
-            +   '<a href="${ctx}/product/info?uid='+item.id+'">' 
+            +   '<a href="${ctx}/sellBuyInfo/info?uid='+item.id+'">' 
             +   '<div class="pro_pic">'
-            +   '<img src="http://112.74.213.8:83/genu-wss-app'+item.productFirstAlbum+'"/>' 
+            +   '<img src="http://112.74.213.8:83/genu-wss-app'+item.sellBuyAlbum+'"/>' 
             +   '</div>' 
             +   '<div class="pro_info">' 
             +   '<h1>'+item.materialName+'</h1>' 
