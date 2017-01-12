@@ -35,15 +35,20 @@ public class CategoryController {
 	//list界面
 	@RequestMapping(value="/list",method = RequestMethod.GET)
 	public  String prolist(Model model){
-		System.out.println("進入");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("page", "0");
 		String formDataPost = postUtil.formDataPostCategoryList(map);
 		System.out.println("formDataPost："+formDataPost);
 		JSONObject json = JSONObject.fromObject(formDataPost);
-//		JSONArray jsonArray = json.getJSONArray(json);
 		model.addAttribute("categoryList", json);
-		System.out.println("model:"+model);
+		
+		//加入供求产品栏目
+		map.put("requestType","SELL");//只查询供应数据
+		String formDataPostSellBuy = postUtil.formDataPostSellBuyInfoList(map);
+		System.out.println("formDataPost："+formDataPost);
+		JSONObject jsonSellBuy = JSONObject.fromObject(formDataPostSellBuy);
+//		JSONArray jsonArray = json.getJSONArray(json);
+		model.addAttribute("sellBuyList", jsonSellBuy);
 		return "fivepage/categoryList";
 	} 
 }
