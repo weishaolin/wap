@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script src="http://s95.cnzz.com/z_stat.php?id=1259853994&web_id=1259853994" language="JavaScript"></script>
 <script type="text/javascript">
 	if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
 		var version = parseFloat(RegExp.$1);
@@ -208,7 +207,7 @@ margin:0px 0px;
 		<li>
 			<a href="${ctx}/sellBuyInfo/info?uid=${pl.id}">
 				<div class="pro_pic">
-					<img src="http://112.74.213.8:83/genu-wss-app${pl.sellBuyAlbum}"/>
+					<img src="http://112.74.213.8:82${pl.sellBuyAlbum}"/>
 				</div>
 				<div class="pro_info">
 				  <c:if test="${fn:length(pl.content)>15}">
@@ -217,10 +216,10 @@ margin:0px 0px;
 					<c:if test="${fn:length(pl.content)<=15}">
 				  	<h1>${pl.content}</h1>
 				  </c:if>
-					<p>长：${pl.length} 厘米</p>
-					<p>宽：${pl.widthName} 厘米</p>
-					<p>厚：${pl.height} 厘米</p>
-					<p>数量：${pl.number}</p>
+					<p>长/高：${pl.length}宽：${pl.widthName}厚：${pl.height} 厘米</p>
+					<%-- <p> 厘米</p>
+					<p> 厘米</p>
+					<p>数量：${pl.number}</p> --%>
 				</div>
 				<c:if test="${pl.requestType=='BUY'}">
 					<span>求购</span>
@@ -472,7 +471,7 @@ function pullUpAction () {
             +   '<li>'  
             +   '<a href="${ctx}/sellBuyInfo/info?uid='+item.id+'">' 
             +   '<div class="pro_pic">'
-            +   '<img src="http://112.74.213.8:83/genu-wss-app'+item.sellBuyAlbum+'"/>' 
+            +   '<img src="http://112.74.213.8:82'+item.sellBuyAlbum+'"/>' 
             +   '</div>' 
             +   '<div class="pro_info">' 
             +   '<h1>'+item.materialName+'</h1>' 
@@ -557,5 +556,8 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, fal
 
 window.addEventListener('load', function () { setTimeout(loaded, 200); }, false);  	
 </script>
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1259853994&web_id=1259853994" language="JavaScript"></script>
+
 </body>
 </html>

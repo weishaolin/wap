@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script src="http://s95.cnzz.com/z_stat.php?id=1259853994&web_id=1259853994" language="JavaScript"></script>
 <script type="text/javascript">
 	if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
 		var version = parseFloat(RegExp.$1);
@@ -124,14 +123,12 @@ margin:0px 0px;
 </header>
  
 <!-- wrap start -->
-<div id="wrapper" class="wrap">
-	
-	
-		<ul class="pro_select clearFix">
+<div id="wrapper" class="wrap">		
+	<ul class="pro_select clearFix">
 			<li class="pro_sort">排序<i></i></li>
 			<li class="pro_screen">筛选<i></i></li>
 		</ul><!-- end select -->
-		<div class="sel_wrap tab_sort">
+	<div class="sel_wrap tab_sort">
 			<ul class="sel_cont">
 				<li><a href="${ctx}/product/sortProperty?sortProperty=LENGTH&materialId=${materialId}">长度最长</a></li>
 				<li><a href="${ctx}/product/sortProperty?sortProperty=PRICE&materialId=${materialId}">立方最贵</a></li>
@@ -139,7 +136,7 @@ margin:0px 0px;
 				<li><a href="${ctx}/product/sortProperty?sortProperty=VIEWCOUNT&materialId=${materialId}">最新发布</a></li>
 			</ul>
 		</div>
-		<div class="sel_wrap tab_screen">
+	<div class="sel_wrap tab_screen">
 			<div class="screen_list">
 				<h1>长度区间（cm）</h1>
 				<ul class="clearFix" id="lengthId">
@@ -190,15 +187,14 @@ margin:0px 0px;
 			</div>
 		</div>
 	
-
 	<div class="product_search">
 	<c:if test="${not empty searchString }">
-		<input id="searchInput" type="text" value="${searchString }" placeholder="请输入商品名称">
-		<a href="#" id="searchString">搜索</a>
+		<input id="searchInput" type="text" value="${searchString }" placeholder="请输入商品名称/长度/宽度/厚度">
+		<a href="#" id="searchString"><h1>搜索</h1></a>
 	</c:if> 
 	 <c:if test="${empty searchString }">
-		<input id="searchInput" type="text"  placeholder="请输入商品名称">
-		<a href="#" id="searchString">搜索</a>
+		<input id="searchInput" type="text"  placeholder="请输入商品名称/长度/宽度/厚度">
+		<a href="#" id="searchString"><h1>搜索</h1></a>
 	 </c:if> 
 	</div><!-- end search -->
 	
@@ -212,17 +208,18 @@ margin:0px 0px;
 		<li>
 			<a href="${ctx}/product/info?uid=${pl.id}">
 				<div class="pro_pic">
-					<img src="http://112.74.213.8:83/genu-wss-app${pl.productFirstAlbum}"/>
+					<img src="http://112.74.213.8:82${fn:replace(pl.productFirstAlbum,'_small','')}"/>
 				</div>
 				<div class="pro_info">
-					<h1>${pl.materialName}</h1>
-					<p>长：${pl.length} 厘米</p>
+					<h1>${fn:replace(pl.materialName,'南美','')} 
+					长:${pl.length}宽:${pl.widthName}厚:${pl.height}</h1>
+					<%-- <p>长：${pl.length} 厘米</p>
 					<p>宽：${pl.widthName} 厘米</p>
 					<p>厚：${pl.height} 厘米</p>
-					<p>编号：${pl.serialNo}</p>
+					<p>编号：${pl.serialNo}</p> --%>
 				</div>
 				<c:if test="${pl.status=='BOOKING'}">
-					<span>待定</span>
+					<span><h1>待定</h1></span>
 				</c:if>
 			</a>
 			
@@ -474,17 +471,16 @@ function pullUpAction () {
             +   '<li>'  
             +   '<a href="${ctx}/product/info?uid='+item.id+'">' 
             +   '<div class="pro_pic">'
-            +   '<img src="http://112.74.213.8:83/genu-wss-app'+item.productFirstAlbum+'"/>' 
+            +   '<img src="http://112.74.213.8:82'+item.productFirstAlbum.replace("_small","")+'"/>' 
             +   '</div>' 
             +   '<div class="pro_info">' 
-            +   '<h1>'+item.materialName+'</h1>' 
-            +   '<p>长：'+item.length+' 厘米</p>' 
-            +   '<p>宽：'+item.widthName+' 厘米</p>' 
-            +   '<p>厚：'+item.height+' 厘米</p>'
-            +   '<p>编号：'+item.serialNo+'</p>'   
+            +   '<h1>'+item.materialName.replace("南美","")+' ' 
+            +   '长:'+item.length+'' 
+            +   '宽:'+item.widthName+'' 
+            +   '厚:'+item.height+'</h1>'   
             +   '</div>'
             if(item.status=="BOOKING"){
-            +   '<span>待定</span>'
+            +   '<span><h1>待定</h1></span>'
             }
             +   '</a>'
             +   '</li>'
@@ -559,5 +555,7 @@ document.addEventListener('touchmove', function (e) { e.preventDefault(); }, fal
 
 window.addEventListener('load', function () { setTimeout(loaded, 200); }, false);  	
 </script>
+<script src="http://s95.cnzz.com/z_stat.php?id=1259853994&web_id=1259853994" language="JavaScript"></script>
+
 </body>
 </html>

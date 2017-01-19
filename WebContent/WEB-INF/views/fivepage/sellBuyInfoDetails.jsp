@@ -54,8 +54,8 @@
 		<div class="pro_pic">
 			<h1>供求图片</h1>
 			<c:forEach items="${productAlbum}" var="pa">
-			<a href="http://112.74.213.8:83/genu-wss-app${pa.image}">
-			<img src="http://112.74.213.8:83/genu-wss-app${pa.image}"/>
+			<a href="http://112.74.213.8:82${pa.image}">
+			<img src="http://112.74.213.8:82${pa.image}"/>
 			</a>
 			</c:forEach>
 		</div>
