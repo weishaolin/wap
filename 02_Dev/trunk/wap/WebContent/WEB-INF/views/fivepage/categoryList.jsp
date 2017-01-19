@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script src="http://s95.cnzz.com/z_stat.php?id=1259853994&web_id=1259853994" language="JavaScript"></script>
 <script type="text/javascript">
 	if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
 		var version = parseFloat(RegExp.$1);
@@ -31,7 +30,7 @@
 <!-- header start -->
 <header id="header">
 	<a href="#" class="back">&lt;</a>
-	<h1>木种</h1>
+	<h1>现货产品分类</h1>
 </header>
 
 <!-- wrap start -->
@@ -54,5 +53,6 @@
 <!-- wrap end -->
 <script type="text/javascript" src="${ctx}/scripts/fivestyle/js/jquery-2.1.3.min.js" ></script>
 <script type="text/javascript" src="${ctx}/scripts/fivestyle/js/common.js" ></script>
+<img src="http://s95.cnzz.com/z_stat.php?id=1259853994&web_id=1259853994" width="0" height="0" style="position:absolute; left:-10000px;">
 </body>
 </html>

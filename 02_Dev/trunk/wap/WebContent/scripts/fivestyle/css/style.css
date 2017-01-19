@@ -100,9 +100,9 @@ section, div, p, h1, h2, h3, h4, h5, h6, ul, li, dl, dt, dd, ol, strong, span, s
 #backTop .btn-top{display:none;width:70px;height:70px;background:url(../image/icon-backTop.png) no-repeat center;background-size:100%}
 
 /*search*/
-.product_search{width:100%;height:100px;position:fixed;top:171px;background-color:#e4e4e4;padding:15px 0;z-index:99;}
-.product_search input{display:block;width:650px;height:70px;margin:0 auto;background-color:#fff;border-radius: 10px;padding-left:10px;}
-.product_search a{display:block;position:absolute;right:49px;top:15px;width:100px;height:70px;line-height:70px;text-align:center;border-left:1px solid #e4e4e4}
+.product_search{width:100%;height:80px;position:fixed;top:171px;background-color:#e4e4e4;padding:10px 0;z-index:99;}
+.product_search input{display:block;width:650px;height:60px;margin:0 auto;background-color:#fff;border-radius: 10px;padding-left:10px;}
+.product_search a{display:block;position:absolute;right:49px;top:10px;width:100px;height:60px;line-height:70px;text-align:center;border-left:1px solid #e4e4e4}
 
 /*select*/
 .pro_select{position:fixed;top:100px;width:100%;background-color:#fff;border-bottom:1px solid #7F7F7F;z-index:101;}
@@ -128,8 +128,8 @@ section, div, p, h1, h2, h3, h4, h5, h6, ul, li, dl, dt, dd, ol, strong, span, s
 
 /*product_list*/
 .pro_list{width:100%;padding:20px;margin-top:171px}
-.pro_list li{position:relative;height:220px;border-bottom:1px solid #515151;margin-bottom:20px;margin-left: 20px;}
-.pro_list .pro_pic{float:left;width:200px;height:200px}
+.pro_list li{position:relative;height:850px;border-bottom:1px solid #515151;margin-bottom:20px;margin-left: 40px;}
+.pro_list .pro_pic{float:left;width:600px;height:800px}
 .pro_list .pro_pic img{width:100%;height:100%}
 .pro_list .pro_info{float:left;margin-left:20px}
 .pro_list .pro_info h1{font-size:32px;margin-bottom:10px}
