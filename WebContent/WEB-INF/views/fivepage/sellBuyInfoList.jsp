@@ -202,33 +202,23 @@ margin:0px 0px;
 	<div id="pullDown">
 			<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
 	</div>
-	<ul class="pro_list" id="ulid">
-	<c:forEach items="${prolist.data}" var="pl">
-		<li>
-			<a href="${ctx}/sellBuyInfo/info?uid=${pl.id}">
-				<div class="pro_pic">
-					<img src="http://112.74.213.8:82${pl.sellBuyAlbum}"/>
-				</div>
-				<div class="pro_info">
-				  <c:if test="${fn:length(pl.content)>15}">
-				  	<h1>${fn:substring(pl.content,0,14)}...</h1>
-				  </c:if>
-					<c:if test="${fn:length(pl.content)<=15}">
-				  	<h1>${pl.content}</h1>
-				  </c:if>
-					<p>长/高：${pl.length}宽：${pl.widthName}厚：${pl.height} 厘米</p>
-					<%-- <p> 厘米</p>
-					<p> 厘米</p>
-					<p>数量：${pl.number}</p> --%>
-				</div>
-				<c:if test="${pl.requestType=='BUY'}">
-					<span>求购</span>
-				</c:if>
+	<div class="pro_details" id="ulid">
+		<c:forEach items="${prolist.data}" var="pa">
+		<div class="pro_pic">	
+			<c:if test="${fn:length(pa.content)>15}">
+				<h1>${fn:substring(pa.content,0,14)}...</h1>
+			</c:if>
+			<c:if test="${fn:length(pa.content)<=15}">
+				<h1>${pa.content}</h1>
+			</c:if>
+			<h2>尺寸：${pa.length}-${pa.width}-${pa.height} cm</h2>
+			<a href="${ctx}/sellBuyInfo/info?uid=${pa.id}">
+			<img src="http://112.74.213.8:82${pa.sellBuyAlbum}"/>
 			</a>
-			
-		</li>
-	</c:forEach>
-	</ul>
+		</div>	
+		</c:forEach>
+	
+	</div>
 	<c:if test="${not empty prolist.data  && fn:length(prolist.data)>=0}">
 	 <div id="pullUp">  
             <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>  
@@ -373,25 +363,6 @@ var sear=new RegExp('-');
 		 result.searchString=$("#searchStr").val();
 		 var pro = JSON.stringify(result);
 		 location.href = "${ctx}/sellBuyInfo/screen?data="+pro;
-	 	  /*$.post("${ctx}/screen",pro,function(data,status){
-		        alert("Data: " + pro + "nStatus: " + status);
-		    }); */
-		  /* $.ajax({  
-             type : "POST",  //提交方式  
-             async:false,  
-             url : "${ctx}/screen",//路径  
-             //dataType:'JSON', 
-             data :pro,//数据，这里使用的是Json格式进行传输  
-             contentType : "application/json",
-            // jsonp:'jsonpcallback', 
-             success : function(data) {//返回数据根据结果进行相应的处理  
-             	$("#storng").text(data);
-             } ,
-             error:function(){
-             	alert('fail');
-             	 //$("p").text(result.age); 
-             }
-         });  */
 		});
 </script>
 <script type="text/javascript">
@@ -467,7 +438,7 @@ function pullUpAction () {
         	 $("#pageSize").val(parseInt($("#pageSize").val())-1);
         }
         $.each(eval("("+data+")").data, function(i, item) {
-        	content=content  
+        	/* content=content  
             +   '<li>'  
             +   '<a href="${ctx}/sellBuyInfo/info?uid='+item.id+'">' 
             +   '<div class="pro_pic">'
@@ -485,9 +456,20 @@ function pullUpAction () {
             }
             +   '</a>'
             +   '</li>'
-			 });
-	 	/* var uid = document.getElementById("ulid");
-		uid.innerHtml=content;  */
+			 }); */
+        content=content  
+        +   '<div class="pro_pic">'
+        /* if(item.content.length>15){
+        +   '<h1>'+item.content.substring(0,14)+'...</h1>'
+        }else{ */
+        +   '	<h1>'+item.content+'</h1>'
+        
+        +   '<h2>尺寸：'+item.length+'-'+item.length+'-'+item.length+' cm</h2>'
+        +   '<a href="${ctx}/sellBuyInfo/info?uid='+item.id+'">'
+        +   '<img src="http://112.74.213.8:82'+item.sellBuyAlbum+'"/>'
+        +   '</a>'
+        +   '</div>'
+    	});
        $("#ulid").append(content);
         myScroll.refresh();//刷新滑动区域  
     },
