@@ -42,7 +42,8 @@
 		<c:if test="${prolist.data.requestType =='SELL'}">
 	 		<h1>供应</h1>
 		</c:if>
-			<p>${prolist.data.content}${prolist.data.length}*${prolist.data.width}*${prolist.data.height}</p>
+		<%-- ${prolist.data.content} --%>
+			<p>${prolist.data.length}*${prolist.data.width}*${prolist.data.height}</p>
 		</div>
 		<ul class="info_list">
 			<li><span>长&emsp;度（cm）</span>${prolist.data.length}</li>
@@ -54,8 +55,9 @@
 		<div class="pro_pic">
 			<h1>供求图片</h1>
 			<c:forEach items="${productAlbum}" var="pa">
-			<a href="http://112.74.213.8:82${pa.image}">
 			<img src="http://112.74.213.8:82${pa.image}"/>
+			<a href="http://112.74.213.8:82${pa.image}">
+			看大图
 			</a>
 			</c:forEach>
 		</div>

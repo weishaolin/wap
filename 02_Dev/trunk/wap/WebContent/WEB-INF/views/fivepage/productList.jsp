@@ -203,29 +203,21 @@ margin:0px 0px;
 	<div id="pullDown">
 			<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
 	</div>
-	<ul class="pro_list" id="ulid">
-	<c:forEach items="${prolist.data}" var="pl">
-		<li>
-			<a href="${ctx}/product/info?uid=${pl.id}">
-				<div class="pro_pic">
-					<img src="http://112.74.213.8:82${fn:replace(pl.productFirstAlbum,'_small','')}"/>
-				</div>
-				<div class="pro_info">
-					<h1>${fn:replace(pl.materialName,'南美','')} 
+	<div class="pro_details" id="ulid">
+		<c:forEach items="${prolist.data}" var="pl">
+		<div class="pro_pic">	
+			<h1>${fn:replace(pl.materialName,'南美','')} 
 					长:${pl.length}宽:${pl.widthName}厚:${pl.height}</h1>
-					<%-- <p>长：${pl.length} 厘米</p>
-					<p>宽：${pl.widthName} 厘米</p>
-					<p>厚：${pl.height} 厘米</p>
-					<p>编号：${pl.serialNo}</p> --%>
-				</div>
-				<c:if test="${pl.status=='BOOKING'}">
-					<span><h1>待定</h1></span>
-				</c:if>
+			<c:if test="${pl.status=='BOOKING'}">
+					<span class="pro_status">待定</span>
+			</c:if>
+			<a href="${ctx}/product/info?uid=${pl.id}">
+			<img src="http://112.74.213.8:82${fn:replace(pl.productFirstAlbum,'_small','')}"/>
 			</a>
-			
-		</li>
-	</c:forEach>
-	</ul>
+		</div>	
+		</c:forEach>
+	
+	</div>
 	<c:if test="${not empty prolist.data  && fn:length(prolist.data)>=0}">
 	 <div id="pullUp">  
             <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>  
@@ -468,22 +460,16 @@ function pullUpAction () {
         }
         $.each(eval("("+data+")").data, function(i, item) {
         	content=content  
-            +   '<li>'  
+            +   '<div class="pro_pic">'	
+            +   '<h1>'+item.materialName.replace('南美','')
+            +   '长:'+item.length+'宽:'+item.widthName+'厚:'+item.height+'</h1>'
+            /*  if(item.status==='BOOKING')
+            +   '<span>待定</span>' */
             +   '<a href="${ctx}/product/info?uid='+item.id+'">' 
-            +   '<div class="pro_pic">'
             +   '<img src="http://112.74.213.8:82'+item.productFirstAlbum.replace("_small","")+'"/>' 
-            +   '</div>' 
-            +   '<div class="pro_info">' 
-            +   '<h1>'+item.materialName.replace("南美","")+' ' 
-            +   '长:'+item.length+'' 
-            +   '宽:'+item.widthName+'' 
-            +   '厚:'+item.height+'</h1>'   
-            +   '</div>'
-            if(item.status=="BOOKING"){
-            +   '<span><h1>待定</h1></span>'
-            }
             +   '</a>'
-            +   '</li>'
+            +   '</div>	'
+            
 			 });
 	 	/* var uid = document.getElementById("ulid");
 		uid.innerHtml=content;  */
