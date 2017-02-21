@@ -119,7 +119,7 @@ margin:0px 0px;
 <!-- header start -->
 <header id="header">
 	<a href="${ctx }/category/list" class="back">&lt;</a>
-	<h1>供求产品<span>${prolist.total }</span></h1>
+	<h1>供求产品<span>${classificationName}${prolist.total }</span></h1>
 </header>
  
 <!-- wrap start -->
@@ -205,12 +205,13 @@ margin:0px 0px;
 	<div class="pro_details" id="ulid">
 		<c:forEach items="${prolist.data}" var="pa">
 		<div class="pro_pic">	
-			<c:if test="${fn:length(pa.content)>15}">
+			<%-- <c:if test="${fn:length(pa.content)>15}">
 				<h1>${fn:substring(pa.content,0,14)}...</h1>
 			</c:if>
 			<c:if test="${fn:length(pa.content)<=15}">
 				<h1>${pa.content}</h1>
-			</c:if>
+			</c:if> --%>
+			<h1>${pa.classificationName} ${pa.materialName}</h1>
 			<h2>尺寸：${pa.length}-${pa.width}-${pa.height} cm</h2>
 			<a href="${ctx}/sellBuyInfo/info?uid=${pa.id}">
 			<img src="http://112.74.213.8:82${pa.sellBuyAlbum}"/>
@@ -400,7 +401,7 @@ function pullDownAction () {
         myScroll.refresh();//刷新滑动区域  
     }  
 });   */
-	location.href = "${ctx}/sellBuyInfo/list/material?materialId=${materialId}";
+	location.href = "${ctx}/sellBuyInfo/list/material?classificationId=${classificationId}&classificationName=${classificationName}";
 }   
 
 function pullUpAction () { 

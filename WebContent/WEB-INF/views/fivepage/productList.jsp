@@ -119,7 +119,7 @@ margin:0px 0px;
 <!-- header start -->
 <header id="header">
 	<a href="${ctx }/category/list" class="back">&lt;</a>
-	<h1>大板现货<span>${prolist.total }</span></h1>
+	<h1>大板现货<span>${materialName}${prolist.total }</span></h1>
 </header>
  
 <!-- wrap start -->
@@ -421,7 +421,7 @@ function pullDownAction () {
         myScroll.refresh();//刷新滑动区域  
     }  
 });   */
-	location.href = "${ctx}/product/list/material?materialId=${materialId}";
+	location.href = "${ctx}/product/list/material?materialId=${materialId}&materialName=${materialName}";
 }   
 
 function pullUpAction () { 

@@ -43,7 +43,8 @@
 	 		<h1>供应</h1>
 		</c:if>
 		<%-- ${prolist.data.content} --%>
-			<p>${prolist.data.length}*${prolist.data.width}*${prolist.data.height}</p>
+			<p>${prolist.data.classificationName} ${prolist.data.materialName}
+			${prolist.data.length}*${prolist.data.width}*${prolist.data.height} cm</p>
 		</div>
 		<ul class="info_list">
 			<li><span>长&emsp;度（cm）</span>${prolist.data.length}</li>
