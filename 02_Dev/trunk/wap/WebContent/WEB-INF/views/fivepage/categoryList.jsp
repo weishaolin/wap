@@ -39,15 +39,22 @@
 	<c:forEach items="${categoryList.data}" var="ca">
 		<c:if test="${ ca.productCount>0}">
 		<li>
-			<a href="${ctx}/product/list/material?materialId=${ca.id}">${ca.name } ${ca.productCount}<span>查看更多></span></a>
+			<a href="${ctx}/product/list/material?materialId=${ca.id}&materialName=${ca.name }">${ca.name } ${ca.productCount}<span>查看更多></span></a>
 		</li>
-		</c:if>
+	</c:if>
 	</c:forEach>	
-	<c:if test="${ sellBuyList.total>0}">
+	<c:forEach items="${sellBuyList.data}" var="ca">
+		<c:if test="${ ca.productCount>0}">
+		<li>
+			<a href="${ctx}/sellBuyInfo/list/material?classificationId=${ca.id}&classificationName=${ca.name }">${ca.name } ${ca.productCount}<span>查看更多></span></a>
+		</li>
+	</c:if>
+	</c:forEach>
+	<%-- <c:if test="${ sellBuyList.total>0}">
 		<li>
 			<a href="${ctx}/sellBuyInfo/list">其他产品  ${sellBuyList.total}<span>查看更多></span></a>
 		</li>
-		</c:if>
+	</c:if> --%>
 	</ul>
 </div>
 <!-- wrap end -->
