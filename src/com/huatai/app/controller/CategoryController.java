@@ -44,7 +44,7 @@ public class CategoryController {
 		
 		//加入供求产品栏目
 		map.put("requestType","SELL");//只查询供应数据
-		String formDataPostSellBuy = postUtil.formDataPostSellBuyInfoList(map);
+		String formDataPostSellBuy = postUtil.formDataPostSellBuyInfoCategory(map);
 		System.out.println("formDataPost："+formDataPost);
 		JSONObject jsonSellBuy = JSONObject.fromObject(formDataPostSellBuy);
 //		JSONArray jsonArray = json.getJSONArray(json);

@@ -41,18 +41,20 @@ public class SellBuyInfoController {
 	
 	//list界面
 	@RequestMapping(value="/list/material",method = RequestMethod.GET)
-	public  String productListByMaterial(@RequestParam(value="materialId") String materialId,Model model){
+	public  String productListByMaterial(@RequestParam(value="classificationId") String classificationId,
+			@RequestParam(value="classificationName") String classificationName,Model model){
 				System.out.println("進入");
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("currentUserId", "1");
-				map.put("material", materialId);
+				map.put("classificationId", classificationId);
 				map.put("requestType","SELL");//只查询供应数据
 				String formDataPost = postUtil.formDataPostSellBuyInfoList(map);
 				System.out.println("formDataPost："+formDataPost);
 				JSONObject json = JSONObject.fromObject(formDataPost);
 //				JSONArray jsonArray = json.getJSONArray(json);
 				model.addAttribute("prolist", json);
-				model.addAttribute("materialId", materialId);
+				model.addAttribute("classificationId", classificationId);
+				model.addAttribute("classificationName", classificationName);
 				System.out.println("model:"+model);
 				return "fivepage/sellBuyInfoList";
 			} 
