@@ -32,7 +32,7 @@ public class CategoryController {
 	@Resource
 	private PostUtil postUtil;
 	
-	//list界面
+	//list界面--可以看到所有产品
 	@RequestMapping(value="/list",method = RequestMethod.GET)
 	public  String prolist(Model model){
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -51,4 +51,6 @@ public class CategoryController {
 		model.addAttribute("sellBuyList", jsonSellBuy);
 		return "fivepage/categoryList";
 	} 
+	
+	
 }
