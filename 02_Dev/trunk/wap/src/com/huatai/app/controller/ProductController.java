@@ -40,7 +40,8 @@ public class ProductController {
 	} 
 	//list界面
 		@RequestMapping(value="/list/material",method = RequestMethod.GET)
-	public  String productListByMaterial(@RequestParam(value="materialId") String materialId,Model model){
+	public  String productListByMaterial(@RequestParam(value="materialId") String materialId,
+			@RequestParam(value="materialName") String materialName,Model model){
 			System.out.println("進入");
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("currentUserId", "1");
@@ -51,6 +52,7 @@ public class ProductController {
 //			JSONArray jsonArray = json.getJSONArray(json);
 			model.addAttribute("prolist", json);
 			model.addAttribute("materialId", materialId);
+			model.addAttribute("materialName", materialName);
 			System.out.println("model:"+model);
 			return "fivepage/productList";
 		} 
