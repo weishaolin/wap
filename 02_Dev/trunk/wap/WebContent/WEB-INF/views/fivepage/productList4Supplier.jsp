@@ -118,7 +118,7 @@ margin:0px 0px;
 <input type="hidden" name="pageSize" id="pageSize" value="0" />   
 <!-- header start -->
 <header id="header">
-	<a href="${ctx }/category/list" class="back">&lt;</a>
+	<a href="${ctx }/category/list/${mobile}" class="back">&lt;</a>
 	<h1>大板现货<span>${materialName}${prolist.total }</span></h1>
 </header>
  
@@ -130,10 +130,10 @@ margin:0px 0px;
 		</ul><!-- end select -->
 	<div class="sel_wrap tab_sort">
 			<ul class="sel_cont">
-				<li><a href="${ctx}/product/sortProperty?sortProperty=LENGTH&materialId=${materialId}">长度最长</a></li>
-				<li><a href="${ctx}/product/sortProperty?sortProperty=PRICE&materialId=${materialId}">立方最贵</a></li>
-				<li><a href="${ctx}/product/sortProperty?sortProperty=MODIFIEDTIME&materialId=${materialId}">最多人看</a></li>
-				<li><a href="${ctx}/product/sortProperty?sortProperty=VIEWCOUNT&materialId=${materialId}">最新发布</a></li>
+				<li><a href="${ctx}/product/sortProperty/${mobile}?sortProperty=LENGTH&materialId=${materialId}">长度最长</a></li>
+				<li><a href="${ctx}/product/sortProperty/${mobile}?sortProperty=PRICE&materialId=${materialId}">立方最贵</a></li>
+				<li><a href="${ctx}/product/sortProperty/${mobile}?sortProperty=MODIFIEDTIME&materialId=${materialId}">最多人看</a></li>
+				<li><a href="${ctx}/product/sortProperty/${mobile}?sortProperty=VIEWCOUNT&materialId=${materialId}">最新发布</a></li>
 			</ul>
 		</div>
 	<div class="sel_wrap tab_screen">
@@ -270,7 +270,7 @@ var sear=new RegExp('-');
 		 result.searchString = inputVal;
 		 var pro = JSON.stringify(result);
 		//location.href = "${ctx}/product/searchString?searchString="+pro;
-		 location.href = "${ctx}/product/screen?data="+pro;
+		 location.href = "${ctx}/product/screen/${mobile}?data="+pro;
 	});
 	//长
 	$("#lengthId li").click(function(){
@@ -364,7 +364,7 @@ var sear=new RegExp('-');
 		 result.material = "${materialId}";
 		 result.searchString=$("#searchStr").val();
 		 var pro = JSON.stringify(result);
-		 location.href = "${ctx}/product/screen?data="+pro;
+		 location.href = "${ctx}/product/screen/${mobile}?data="+pro;
 	 	  /*$.post("${ctx}/screen",pro,function(data,status){
 		        alert("Data: " + pro + "nStatus: " + status);
 		    }); */
@@ -421,7 +421,7 @@ function pullDownAction () {
         myScroll.refresh();//刷新滑动区域  
     }  
 });   */
-	location.href = "${ctx}/product/list/material?materialId=${materialId}&materialName=${materialName}";
+	location.href = "${ctx}/product/list/material/${mobile}?materialId=${materialId}&materialName=${materialName}";
 }   
 
 function pullUpAction () { 
@@ -442,7 +442,7 @@ function pullUpAction () {
 	var obj= JSON.stringify(object);
 	var content=""; 
    $.ajax({  
-    url:"${ctx}/product/pullUp?pullUp="+obj,  
+    url:"${ctx}/product/pullUp/${mobile}?pullUp="+obj,  
     type:"POST",  
    // data :obj,//数据，这里使用的是Json格式进行传输  
     contentType : "application/json",
