@@ -43,13 +43,13 @@
 		</li>
 	</c:if>
 	</c:forEach>	
-	<%-- <c:forEach items="${sellBuyList.data}" var="ca">
+	<c:forEach items="${sellBuyList.data}" var="ca">
 		<c:if test="${ ca.productCount>0}">
 		<li>
-			<a href="${ctx}/sellBuyInfo/list/material?classificationId=${ca.id}&classificationName=${ca.name }">${ca.name } ${ca.productCount}<span>查看更多></span></a>
+			<a href="${ctx}/sellBuyInfo/list/material/${mobile}?classificationId=${ca.id}&classificationName=${ca.name }">${ca.name } ${ca.productCount}<span>查看更多></span></a>
 		</li>
 	</c:if>
-	</c:forEach> --%>
+	</c:forEach>
 	<%-- <c:if test="${ sellBuyList.total>0}">
 		<li>
 			<a href="${ctx}/sellBuyInfo/list">其他产品  ${sellBuyList.total}<span>查看更多></span></a>
@@ -58,6 +58,9 @@
 	</ul>
 </div>
 <!-- wrap end -->
+<div style='margin:0 auto;display:none;'>
+<img src='${ctx}/favicon.jpg' />
+</div>
 <script type="text/javascript" src="${ctx}/scripts/fivestyle/js/jquery-2.1.3.min.js" ></script>
 <script type="text/javascript" src="${ctx}/scripts/fivestyle/js/common.js" ></script>
 <img src="http://s95.cnzz.com/z_stat.php?id=1259853994&web_id=1259853994" width="0" height="0" style="position:absolute; left:-10000px;">

@@ -130,10 +130,10 @@ margin:0px 0px;
 		</ul><!-- end select -->
 		<div class="sel_wrap tab_sort">
 			<ul class="sel_cont">
-				<li><a href="${ctx}/sellBuyInfo/sortProperty?sortProperty=LENGTH&materialId=${materialId}">长度最长</a></li>
-				<li><a href="${ctx}/sellBuyInfo/sortProperty?sortProperty=PRICE&materialId=${materialId}">立方最贵</a></li>
-				<li><a href="${ctx}/sellBuyInfo/sortProperty?sortProperty=MODIFIEDTIME&materialId=${materialId}">最多人看</a></li>
-				<li><a href="${ctx}/sellBuyInfo/sortProperty?sortProperty=VIEWCOUNT&materialId=${materialId}">最新发布</a></li>
+				<li><a href="${ctx}/sellBuyInfo/sortProperty/${mobile}?sortProperty=LENGTH&materialId=${materialId}">长度最长</a></li>
+				<li><a href="${ctx}/sellBuyInfo/sortProperty/${mobile}?sortProperty=PRICE&materialId=${materialId}">立方最贵</a></li>
+				<li><a href="${ctx}/sellBuyInfo/sortProperty/${mobile}?sortProperty=MODIFIEDTIME&materialId=${materialId}">最多人看</a></li>
+				<li><a href="${ctx}/sellBuyInfo/sortProperty/${mobile}?sortProperty=VIEWCOUNT&materialId=${materialId}">最新发布</a></li>
 			</ul>
 		</div>
 		<div class="sel_wrap tab_screen">
@@ -277,7 +277,7 @@ var sear=new RegExp('-');
 		 result.searchString = inputVal;
 		 var pro = JSON.stringify(result);
 		//location.href = "${ctx}/sellBuyInfo/searchString?searchString="+pro;
-		 location.href = "${ctx}/sellBuyInfo/screen?data="+pro;
+		 location.href = "${ctx}/sellBuyInfo/screen/${mobile}?data="+pro;
 	});
 	//长
 	$("#lengthId li").click(function(){
@@ -368,7 +368,7 @@ var sear=new RegExp('-');
 		 result.material = "${materialId}";
 		 result.searchString=$("#searchStr").val();
 		 var pro = JSON.stringify(result);
-		 location.href = "${ctx}/sellBuyInfo/screen?data="+pro;
+		 location.href = "${ctx}/sellBuyInfo/screen/${mobile}?data="+pro;
 		});
 </script>
 <script type="text/javascript">
@@ -406,7 +406,7 @@ function pullDownAction () {
         myScroll.refresh();//刷新滑动区域  
     }  
 });   */
-	location.href = "${ctx}/sellBuyInfo/list/material?classificationId=${classificationId}&classificationName=${classificationName}";
+	location.href = "${ctx}/sellBuyInfo/list/material/${mobile}?classificationId=${classificationId}&classificationName=${classificationName}";
 }   
 
 function pullUpAction () { 
@@ -427,7 +427,7 @@ function pullUpAction () {
 	var obj= JSON.stringify(object);
 	var content=""; 
    $.ajax({  
-    url:"${ctx}/sellBuyInfo/pullUp?pullUp="+obj,  
+    url:"${ctx}/sellBuyInfo/pullUp/${mobile}?pullUp="+obj,  
     type:"POST",  
    // data :obj,//数据，这里使用的是Json格式进行传输  
     contentType : "application/json",

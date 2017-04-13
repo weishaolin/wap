@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="icon" href="${pageContext.request.contextPath }/favicon.ico" />
 <%-- <script src="${ctx}/js/jquery-2.1.3.min.js"></script> --%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/scripts/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
@@ -35,6 +36,7 @@
 		    }
 
 	</script>
+
 </head>
 <body>
 <span>数据：</span><strong id="storng">${ctx}</strong> <br/>

@@ -25,6 +25,7 @@
 <meta name="description" content="">
 <title>${materialName}${prolist.total }片 大板现货产品</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
+<link rel="icon" href="${ctx}/favicon.ico" />
 <style type="text/css">
 #wrapperscr {
 	position:absolute; z-index:1;
@@ -150,7 +151,7 @@ margin:0px 0px;
 					<li><a href="javascript:;">350-450</a></li>
 					<li><a href="javascript:;">450以上</a></li>
 				</ul>
-				<!-- <p>自定义：<input id="bl" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="el" type="text"></p> -->
+				<p>自定义：<input id="bl" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="el" type="text"></p>
 			</div>
 			<div class="screen_list">
 				<h1>宽度区间（cm）</h1>
