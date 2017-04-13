@@ -121,12 +121,24 @@ public class PostUtil {
 			String rs = formDataPostMethod(map,url);
 			return rs; 
 		}
+	//供求列表--根据供应商电话获取
+	public String formDataPostSupplierSellBuyInfoList(HashMap<String, Object> map,String mobile){
+		String url="http://112.74.213.8:82/sellBuyInfo/list/"+mobile;
+		String rs = formDataPostMethod(map,url);
+		return rs; 	
+	}
 	//供求列表
 	public String formDataPostSellBuyInfoCategory(HashMap<String, Object> map){
 		String url="http://112.74.213.8:82/category/web/top/level";
 		String rs = formDataPostMethod(map,url);
 		return rs; 		
 	}	
+	//供求列表--根据供应商电话获取
+	public String formDataPostSupplierSellBuyInfoCategory(HashMap<String, Object> map,String mobile){
+		String url="http://112.74.213.8:82/category/web/top/level/"+mobile;
+		String rs = formDataPostMethod(map,url);
+		return rs; 		
+	}		
 	//供求详情页面url
 	public String formDataPostSellBuyInfo(HashMap<String, Object> map){
 		String url="http://112.74.213.8:82/sellBuyInfo/info";

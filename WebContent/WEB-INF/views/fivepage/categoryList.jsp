@@ -25,6 +25,7 @@
 <meta name="description" content="">
 <title>现货网站系统-大板现货</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
+<link rel="icon" href="${ctx}/favicon.ico" />
 </head>
 <body>
 <!-- header start -->
@@ -56,6 +57,10 @@
 		</li>
 	</c:if> --%>
 	</ul>
+</div>
+<%-- <div><img alt="" src="${ctx}/favicon.png"></div> --%>
+<div style='margin:0 auto;display:none;'>
+<img src='${ctx}/favicon.jpg' />
 </div>
 <!-- wrap end -->
 <script type="text/javascript" src="${ctx}/scripts/fivestyle/js/jquery-2.1.3.min.js" ></script>

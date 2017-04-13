@@ -65,12 +65,12 @@ public class CategoryController {
 			model.addAttribute("mobile", mobile);
 			
 			//加入供求产品栏目
-			/*map.put("requestType","SELL");//只查询供应数据
-			String formDataPostSellBuy = postUtil.formDataPostSellBuyInfoCategory(map);
-			System.out.println("formDataPost："+formDataPost);
+			map.put("requestType","SELL");//只查询供应数据
+			String formDataPostSellBuy = postUtil.formDataPostSupplierSellBuyInfoCategory(map, mobile);
+			System.out.println("formDataPostSellBuy："+formDataPostSellBuy);
 			JSONObject jsonSellBuy = JSONObject.fromObject(formDataPostSellBuy);
 //			JSONArray jsonArray = json.getJSONArray(json);
-			model.addAttribute("sellBuyList", jsonSellBuy);*/
+			model.addAttribute("sellBuyList", jsonSellBuy);
 			return "fivepage/categoryList4Supplier";
 		} 
 }
