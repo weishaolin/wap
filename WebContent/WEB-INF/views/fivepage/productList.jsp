@@ -119,7 +119,7 @@ margin:0px 0px;
 <input type="hidden" name="pageSize" id="pageSize" value="0" />   
 <!-- header start -->
 <header id="header">
-	<a href="${ctx }/category/list" class="back">&lt;</a>
+	<%-- <a href="${ctx }/category/list" class="back">&lt;</a> --%>
 	<h1>大板现货<span>${materialName}${prolist.total }</span></h1>
 </header>
  
@@ -156,11 +156,12 @@ margin:0px 0px;
 			<div class="screen_list">
 				<h1>宽度区间（cm）</h1>
 				<ul id="widthId" class="clearFix">
-					<li><a href="javascript:;">60以下</a></li>
-					<li><a href="javascript:;">60-80</a></li>
-					<li><a href="javascript:;">80-120</a></li>
-					<li><a href="javascript:;">120-140</a></li>
-					<li><a href="javascript:;">140以上</a></li>
+					<li><a href="javascript:;">80以下</a></li>
+					<li><a href="javascript:;">80-90</a></li>
+					<li><a href="javascript:;">90-100</a></li>
+					<li><a href="javascript:;">100-110</a></li>
+					<li><a href="javascript:;">110-120</a></li>
+					<li><a href="javascript:;">120以上</a></li>
 				</ul>
 				<!-- <p>自定义：<input id="bw" type="text">&nbsp;&nbsp;--&nbsp;&nbsp;<input id="ew" type="text"></p> -->
 			</div>
@@ -297,10 +298,10 @@ var sear=new RegExp('-');
 		range.width=$(this).text();
 		if(sear.test(range.width)){
 		}else{
-			if(range.width.substring(0,2)=="60"){
-				range.width="0-60";
+			if(range.width.substring(0,2)=="80"){
+				range.width="0-80";
 			}else{
-				range.length="140-1000";
+				range.width="120-1000";
 			}
 		}
 		var wdi=range.width.split('-');
@@ -318,7 +319,7 @@ var sear=new RegExp('-');
 			if(range.Height.substring(0,1)=="8"){
 				range.Height="0-8";
 			}else{
-				range.length="12-1000";
+				range.Height="12-1000";
 			}
 		}
 		var hgi=range.Height.split('-');

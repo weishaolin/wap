@@ -30,7 +30,7 @@
 <body>
 <!-- header start -->
 <header id="header">
-	<a href="#" class="back">&lt;</a>
+	<!-- <a href="#" class="back">&lt;</a> -->
 	<h1>现货产品分类</h1>
 </header>
 
@@ -40,14 +40,14 @@
 	<c:forEach items="${categoryList.data}" var="ca">
 		<c:if test="${ ca.productCount>0}">
 		<li>
-			<a href="${ctx}/product/list/material?materialId=${ca.id}&materialName=${ca.name }">${ca.name } ${ca.productCount}<span>查看更多></span></a>
+			<a href="${ctx}/product/list/material?materialId=${ca.id}&materialName=${ca.name }">${ca.name } ${ca.productCount}<span>>></span></a>
 		</li>
 	</c:if>
 	</c:forEach>	
 	<c:forEach items="${sellBuyList.data}" var="ca">
 		<c:if test="${ ca.productCount>0}">
 		<li>
-			<a href="${ctx}/sellBuyInfo/list/material?classificationId=${ca.id}&classificationName=${ca.name }">${ca.name } ${ca.productCount}<span>查看更多></span></a>
+			<a href="${ctx}/sellBuyInfo/list/material?classificationId=${ca.id}&classificationName=${ca.name }">${ca.name } ${ca.productCount}<span> >></span></a>
 		</li>
 	</c:if>
 	</c:forEach>

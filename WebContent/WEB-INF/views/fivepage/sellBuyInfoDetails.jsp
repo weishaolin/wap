@@ -28,8 +28,8 @@
 <body>
 <!-- header start -->
 <header id="header">
-	<a href="#" class="back"  onclick="self.location=document.referrer;">&lt;</a>
-	<h1>供求产品详情</h1>
+	<!-- <a href="#" class="back"  onclick="self.location=document.referrer;">&lt;</a> -->
+	<h1>产品详情</h1>
 </header>
 
 <!-- wrap start -->
