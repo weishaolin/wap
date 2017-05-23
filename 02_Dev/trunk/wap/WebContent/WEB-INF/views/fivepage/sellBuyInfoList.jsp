@@ -23,7 +23,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <meta name="description" content="">
-<title>供求列表</title>
+<title>产品列表</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
 <style type="text/css">
 #wrapperscr {
@@ -118,8 +118,8 @@ margin:0px 0px;
 <input type="hidden" name="pageSize" id="pageSize" value="0" />   
 <!-- header start -->
 <header id="header">
-	<a href="${ctx }/category/list" class="back">&lt;</a>
-	<h1>供求产品<span>${classificationName}${prolist.total }</span></h1>
+	<%-- <a href="${ctx }/category/list" class="back">&lt;</a> --%>
+	<h1>产品<span>${classificationName}${prolist.total }</span></h1>
 </header>
  
 <!-- wrap start -->

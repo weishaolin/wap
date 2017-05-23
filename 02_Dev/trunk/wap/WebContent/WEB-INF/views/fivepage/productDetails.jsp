@@ -29,7 +29,7 @@
 <body>
 <!-- header start -->
 <header id="header">
-	<a href="#" class="back"  onclick="self.location=document.referrer;">&lt;</a>
+	<!-- <a href="#" class="back"  onclick="self.location=document.referrer;">&lt;</a> -->
 	<h1>产品详情</h1>
 </header>
 
@@ -51,7 +51,12 @@
 			<li><span>宽&emsp;度（cm）</span>${prolist.data.widthName}</li>
 			<li><span>厚&emsp;度（cm）</span>${prolist.data.height}</li>
 			<li><span>立方数（m<font>3</font>）</span>${prolist.data.cubage}</li>
-			<%-- <li><span>重&emsp;量（kg）${prolist.data.weight}</span></li> --%>
+			<li><span>状&emsp;态：</span>
+			<c:if test="${prolist.data.status =='READY_SALES' }"><span style="color: green;">上架</span></c:if>
+			<c:if test="${prolist.data.status =='BOOKING' }"><span style="color: red;">待定</span></c:if>
+			<c:if test="${prolist.data.status =='OUT_SALES' }"><span style="color: red;">已下架</span></c:if>
+			<c:if test="${prolist.data.status =='SOLD' }"><span style="color: red;">已售</span></c:if>
+			</li>
 		</c:if>
 		<c:if test="${prolist.data.productType =='WOOD' }">
 			<li><span>长&emsp;度（米）</span>${prolist.data.length}</li>

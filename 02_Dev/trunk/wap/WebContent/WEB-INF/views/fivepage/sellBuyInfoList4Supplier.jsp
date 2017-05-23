@@ -23,7 +23,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <meta name="description" content="">
-<title>供求列表</title>
+<title>产品列表</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
 <style type="text/css">
 #wrapperscr {
@@ -118,8 +118,8 @@ margin:0px 0px;
 <input type="hidden" name="pageSize" id="pageSize" value="0" />   
 <!-- header start -->
 <header id="header">
-	<a href="${ctx }/category/list" class="back">&lt;</a>
-	<h1>供求产品<span>${classificationName}${prolist.total }</span></h1>
+	<%-- <a href="${ctx }/category/list/${mobile}" class="back">&lt;</a> --%>
+	<h1>产品<span>${classificationName}${prolist.total }</span></h1>
 </header>
  
 <!-- wrap start -->
@@ -216,10 +216,10 @@ margin:0px 0px;
 			<c:if test="${fn:length(pa.content)<=15}">
 				<h1>${pa.content}</h1>
 			</c:if> --%>
-			<h1>${pa.classificationName} ${pa.materialName}</h1>
+			<h1>${pa.classificationName} ${pa.subClassificationName}</h1>
 			<h2>尺寸：${pa.length}-${pa.width}-${pa.height} cm</h2>
 			<a href="${ctx}/sellBuyInfo/info?uid=${pa.id}">
-			<img src="http://112.74.213.8:82${pa.sellBuyAlbum}"/>
+			<img src="http://112.74.213.8:82${pa.productAlbum}"/>
 			</a>
 		</div>	
 		</c:forEach>
@@ -472,7 +472,7 @@ function pullUpAction () {
         
         +   '<h2>尺寸：'+item.length+'-'+item.length+'-'+item.length+' cm</h2>'
         +   '<a href="${ctx}/sellBuyInfo/info?uid='+item.id+'">'
-        +   '<img src="http://112.74.213.8:82'+item.sellBuyAlbum+'"/>'
+        +   '<img src="http://112.74.213.8:82'+item.productAlbum+'"/>'
         +   '</a>'
         +   '</div>'
     	});
