@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
 //工具类
 @Component
 public class PostUtil {
+	private final static String SERVER_URL="http://112.74.213.8:82";//生产
+//	private final static String SERVER_URL="http://112.74.213.8:83/genu-wss-app";//测试
 
 	public  String post(String postUrl,String param) {  
     	String strURL=postUrl;
@@ -83,65 +85,65 @@ public class PostUtil {
 	}
 	//产品列表
 	public String formDataPost(HashMap<String, Object> map){
-		String url="http://112.74.213.8:82/product/tableborder/list";
+		String url= SERVER_URL + "/product/tableborder/list";
 		String rs = formDataPostMethod(map,url);
 		return rs; 
 	}
 	
 	//产品列表--根据供应商电话获取
 	public String formProductDataPost(HashMap<String, Object> map,String mobile){
-		String url="http://112.74.213.8:82/product/web/tableborder/list/"+mobile;
+		String url=SERVER_URL + "/product/web/tableborder/list/"+mobile;
 		String rs = formDataPostMethod(map,url);
 		return rs; 
 	}	
 	
 	//产品详情页面url
 	public String formDataPostInfo(HashMap<String, Object> map){
-		String url="http://112.74.213.8:82/product/info";
+		String url=SERVER_URL + "/product/info";
 		String rs = formDataPostMethod(map,url);
 		return rs; 
 	}
 	
 	//木种列表
 	public String formDataPostCategoryList(HashMap<String, Object> map){
-		String url="http://112.74.213.8:82/category/web/list";
+		String url=SERVER_URL + "/category/web/list";
 		String rs = formDataPostMethod(map,url);
 		return rs; 
 	}
 	
 	//木种列表--根据供应商电话获取
 	public String formDataPostSupplierCategoryList(HashMap<String, Object> map,String mobile){
-			String url="http://112.74.213.8:82/category/web/list/"+mobile;
+			String url=SERVER_URL + "/category/web/list/"+mobile;
 		    String rs = formDataPostMethod(map,url);
 			return rs; 
 	}
 	//供求列表
 	public String formDataPostSellBuyInfoList(HashMap<String, Object> map){
-			String url="http://112.74.213.8:82/sellBuyInfo/list";
+			String url=SERVER_URL + "/sellBuyInfo/new/list";
 			String rs = formDataPostMethod(map,url);
 			return rs; 
 		}
 	//供求列表--根据供应商电话获取
 	public String formDataPostSupplierSellBuyInfoList(HashMap<String, Object> map,String mobile){
-		String url="http://112.74.213.8:82/sellBuyInfo/list/"+mobile;
+		String url=SERVER_URL + "/product/web/sellBuyInfo/list/"+mobile;
 		String rs = formDataPostMethod(map,url);
 		return rs; 	
 	}
 	//供求列表
 	public String formDataPostSellBuyInfoCategory(HashMap<String, Object> map){
-		String url="http://112.74.213.8:82/category/web/top/level";
+		String url=SERVER_URL + "/category/web/top/level";
 		String rs = formDataPostMethod(map,url);
 		return rs; 		
 	}	
 	//供求列表--根据供应商电话获取
 	public String formDataPostSupplierSellBuyInfoCategory(HashMap<String, Object> map,String mobile){
-		String url="http://112.74.213.8:82/category/web/top/level/"+mobile;
+		String url=SERVER_URL + "/category/web/top/level/"+mobile;
 		String rs = formDataPostMethod(map,url);
 		return rs; 		
 	}		
 	//供求详情页面url
 	public String formDataPostSellBuyInfo(HashMap<String, Object> map){
-		String url="http://112.74.213.8:82/sellBuyInfo/info";
+		String url=SERVER_URL + "/sellBuyInfo/new/info";
 		String rs = formDataPostMethod(map,url);
 		return rs; 	
 	}
