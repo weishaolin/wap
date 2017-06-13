@@ -23,7 +23,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <meta name="description" content="">
-<title>产品列表</title>
+<title>${classificationName}${prolist.total }</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
 <style type="text/css">
 #wrapperscr {
@@ -106,6 +106,9 @@ margin:0px 0px;
 </style>
 </head>
 <body>
+<div style='margin:0 auto;display:none;'>
+<img src='${ctx}/favicon.jpg' />
+</div>
 <input type="hidden" name="beginLength" id="beginLength" value="${transmit.beginLength }" /> 
 <input type="hidden" name="endLength" id="endLength" value="${transmit.endLength }" /> 
 <input type="hidden" name="beginWidth" id="beginWidth" value="${transmit.beginWidth }" /> 
@@ -217,9 +220,9 @@ margin:0px 0px;
 				<h1>${pa.content}</h1>
 			</c:if> --%>
 			<h1>${pa.classificationName} ${pa.subClassificationName}</h1>
-			<h2>尺寸：${pa.length}-${pa.width}-${pa.height} cm</h2>
+			<h2>尺寸：${pa.length}*${pa.width}*${pa.height} cm, 库存数量：${fn:replace(pa.number,'.0','')}</h2>
 			<a href="${ctx}/sellBuyInfo/info?uid=${pa.id}">
-			<img src="http://112.74.213.8:82${pa.productAlbum}"/>
+			<img src="http://112.74.213.8:82${fn:replace(pa.productFirstAlbum,'_small','')}"/>
 			</a>
 		</div>	
 		</c:forEach>
@@ -424,6 +427,7 @@ function pullUpAction () {
 	 object.material = "${materialId}";
 	 object.sortProperty=$("#sortProperty").val();
 	 object.searchString=$("#searchStr").val();
+	 object.classificationId="${classificationId}";
 	var obj= JSON.stringify(object);
 	var content=""; 
    $.ajax({  
@@ -444,35 +448,17 @@ function pullUpAction () {
         	 $("#pageSize").val(parseInt($("#pageSize").val())-1);
         }
         $.each(eval("("+data+")").data, function(i, item) {
-        	/* content=content  
-            +   '<li>'  
-            +   '<a href="${ctx}/sellBuyInfo/info?uid='+item.id+'">' 
-            +   '<div class="pro_pic">'
-            +   '<img src="http://112.74.213.8:82'+item.sellBuyAlbum+'"/>' 
-            +   '</div>' 
-            +   '<div class="pro_info">' 
-            +   '<h1>'+item.materialName+'</h1>' 
-            +   '<p>长：'+item.length+' 厘米</p>' 
-            +   '<p>宽：'+item.widthName+' 厘米</p>' 
-            +   '<p>厚：'+item.height+' 厘米</p>'
-            +   '<p>编号：'+item.serialNo+'</p>'   
-            +   '</div>'
-            if(item.status=="BOOKING"){
-            +   '<span>待定</span>'
-            }
-            +   '</a>'
-            +   '</li>'
-			 }); */
+        	
         content=content  
         +   '<div class="pro_pic">'
         /* if(item.content.length>15){
         +   '<h1>'+item.content.substring(0,14)+'...</h1>'
         }else{ */
-        +   '	<h1>'+item.content+'</h1>'
+        +   '	<h1>'+item.subClassificationName+item.classificationName+'</h1>'
         
-        +   '<h2>尺寸：'+item.length+'-'+item.length+'-'+item.length+' cm</h2>'
+        +   '<h2>尺寸：'+item.length+'*'+item.width+'*'+item.height+' cm,库存数量：'+item.number.replace(".0","")+'</h2>'
         +   '<a href="${ctx}/sellBuyInfo/info?uid='+item.id+'">'
-        +   '<img src="http://112.74.213.8:82'+item.productAlbum+'"/>'
+        +   '<img src="http://112.74.213.8:82'+item.productFirstAlbum.replace("_small","")+'"/>' 
         +   '</a>'
         +   '</div>'
     	});

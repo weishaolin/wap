@@ -27,6 +27,9 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
 </head>
 <body>
+<div style='margin:0 auto;display:none;'>
+<img src='${ctx}/favicon.jpg' />
+</div>
 <!-- header start -->
 <header id="header">
 	<!-- <a href="#" class="back">&lt;</a> -->
@@ -58,9 +61,7 @@
 	</ul>
 </div>
 <!-- wrap end -->
-<div style='margin:0 auto;display:none;'>
-<img src='${ctx}/favicon.jpg' />
-</div>
+
 <script type="text/javascript" src="${ctx}/scripts/fivestyle/js/jquery-2.1.3.min.js" ></script>
 <script type="text/javascript" src="${ctx}/scripts/fivestyle/js/common.js" ></script>
 <img src="http://s95.cnzz.com/z_stat.php?id=1259853994&web_id=1259853994" width="0" height="0" style="position:absolute; left:-10000px;">

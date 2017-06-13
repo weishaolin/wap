@@ -22,7 +22,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <meta name="description" content="">
-<title>现货网站系统</title>
+<title>${prolist.data.classificationName} ${prolist.data.materialName}
+			${prolist.data.length}*${prolist.data.width}*${prolist.data.height} cm</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
 </head>
 <body>
