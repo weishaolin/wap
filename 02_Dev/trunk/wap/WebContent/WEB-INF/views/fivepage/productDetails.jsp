@@ -37,27 +37,33 @@
 <div id="wrapper" class="wrap">
 	<div class="pro_details">
 		<div class="detail_title">
-			<h1>${prolist.data.material}</h1>
+			<h1>${prolist.data.materialName}
+			&emsp;状态:
+			<c:if test="${prolist.data.status =='READY_SALES' }"><span style="color: green;">上架</span></c:if>
+			<c:if test="${prolist.data.status =='BOOKING' }"><span style="color: red;">待定</span></c:if>
+			<c:if test="${prolist.data.status =='OUT_SALES' }"><span style="color: red;">已下架</span></c:if>
+			<c:if test="${prolist.data.status =='SOLD' }"><span style="color: red;">已售</span></c:if>
+			</h1>
 			<c:if test="${prolist.data.productType =='TABLE_BORDER' }">
-			<p>${prolist.data.materialName}${prolist.data.length}*${prolist.data.widthName}*${prolist.data.height}</p>
+			<p>尺寸：${prolist.data.length}*${prolist.data.widthName}*${prolist.data.height}&emsp;编号：${prolist.data.serialNo}</p>
 			</c:if>
 			<c:if test="${prolist.data.productType =='WOOD' }">
-			<p>${prolist.data.materialName}${prolist.data.length}*${prolist.data.diameter}</p>
+			<p>尺寸：${prolist.data.length}米*${prolist.data.diameter}厘米&emsp;编号：${prolist.data.serialNo}</p>
 			</c:if>
 		</div>
 		<ul class="info_list">
-		 <c:if test="${prolist.data.productType =='TABLE_BORDER' }">
+		 <%-- <c:if test="${prolist.data.productType =='TABLE_BORDER' }">
 			<li><span>长&emsp;度（cm）</span>${prolist.data.length}</li>
 			<li><span>宽&emsp;度（cm）</span>${prolist.data.widthName}</li>
 			<li><span>厚&emsp;度（cm）</span>${prolist.data.height}</li>
-			<li><span>立方数（m<font>3</font>）</span>${prolist.data.cubage}</li>
+			<li><span>立方数（m<font>3</font>）</span>${prolist.data.cubage}</li> 
 			<li><span>状&emsp;态：</span>
 			<c:if test="${prolist.data.status =='READY_SALES' }"><span style="color: green;">上架</span></c:if>
 			<c:if test="${prolist.data.status =='BOOKING' }"><span style="color: red;">待定</span></c:if>
 			<c:if test="${prolist.data.status =='OUT_SALES' }"><span style="color: red;">已下架</span></c:if>
 			<c:if test="${prolist.data.status =='SOLD' }"><span style="color: red;">已售</span></c:if>
 			</li>
-		</c:if>
+		</c:if>--%>
 		<c:if test="${prolist.data.productType =='WOOD' }">
 			<li><span>长&emsp;度（米）</span>${prolist.data.length}</li>
 			<li><span>直径（cm）</span>${prolist.data.diameter}</li>

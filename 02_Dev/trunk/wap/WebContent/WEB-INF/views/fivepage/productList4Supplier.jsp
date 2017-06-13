@@ -106,6 +106,9 @@ margin:0px 0px;
 </style>
 </head>
 <body>
+<div style='margin:0 auto;display:none;'>
+<img src='${ctx}/favicon.jpg' />
+</div>
 <input type="hidden" name="beginLength" id="beginLength" value="${transmit.beginLength }" /> 
 <input type="hidden" name="endLength" id="endLength" value="${transmit.endLength }" /> 
 <input type="hidden" name="beginWidth" id="beginWidth" value="${transmit.beginWidth }" /> 
@@ -190,11 +193,11 @@ margin:0px 0px;
 	
 	<div class="product_search">
 	<c:if test="${not empty searchString }">
-		<input id="searchInput" type="text" value="${searchString }" placeholder="请输入商品名称/长度/宽度/厚度">
+		<input id="searchInput" type="text" value="${searchString }" placeholder="请输入商品名称/编号/长/宽/厚">
 		<a href="#" id="searchString"><h1>搜索</h1></a>
 	</c:if> 
 	 <c:if test="${empty searchString }">
-		<input id="searchInput" type="text"  placeholder="请输入商品名称/长度/宽度/厚度">
+		<input id="searchInput" type="text"  placeholder="请输入商品名称/编号/长/宽/厚">
 		<a href="#" id="searchString"><h1>搜索</h1></a>
 	 </c:if> 
 	</div><!-- end search -->
