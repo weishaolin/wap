@@ -211,13 +211,14 @@ margin:0px 0px;
 		<c:forEach items="${prolist.data}" var="pl">
 		<div class="pro_pic">	
 			<h1>${fn:replace(pl.materialName,'南美','')} 
-					长:${pl.length}宽:${pl.widthName}厚:${pl.height} 
+					 
 			<c:if test="${pl.status=='BOOKING'}">
 					<span style="color: red;">待定</span>
 			</c:if></h1>
 			<c:if test="${pl.status=='BOOKING'}">
 					<span class="pro_status">待定</span>
 			</c:if>
+			<p>尺寸:${pl.length}*${pl.widthName}*${pl.height}编号：${pl.serialNo }</p>
 			<a href="${ctx}/product/info?uid=${pl.id}">
 			<img src="http://112.74.213.8:82${fn:replace(pl.productFirstAlbum,'_small','')}"/>
 			</a>
@@ -480,8 +481,8 @@ function pullUpAction () {
         	content=content  
             +   '<div class="pro_pic">'	
             +   '<h1>'+item.materialName.replace('南美','')
-            +   '长:'+item.length+'宽:'+item.widthName+'厚:'+item.height
 			+ bookingStr
+            +   '<p>长:'+item.length+'*'+item.widthName+'*'+item.height+' 编号:'+item.serialNo+'</p>'
 			/*+' </h1>'
               if(item.status==='BOOKING')
             +   '<span>待定</span>' */

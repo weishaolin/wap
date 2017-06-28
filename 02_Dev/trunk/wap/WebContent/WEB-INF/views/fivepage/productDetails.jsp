@@ -23,7 +23,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <meta name="description" content="">
-<title>${prolist.data.materialName}${prolist.data.length}*${prolist.data.widthName}*${prolist.data.height}</title>
+<title>
+<c:if test="${prolist.data.productType =='TABLE_BORDER' }">
+${prolist.data.materialName}${prolist.data.length}*${prolist.data.widthName}*${prolist.data.height}
+</c:if>
+<c:if test="${prolist.data.productType =='WOOD' }">
+${prolist.data.materialName}${prolist.data.length}米*${prolist.data.diameter}厘米
+</c:if>
+</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/scripts/fivestyle/css/style.css">
 </head>
 <body>
@@ -64,12 +71,12 @@
 			<c:if test="${prolist.data.status =='SOLD' }"><span style="color: red;">已售</span></c:if>
 			</li>
 		</c:if>--%>
-		<c:if test="${prolist.data.productType =='WOOD' }">
+		<%-- <c:if test="${prolist.data.productType =='WOOD' }">
 			<li><span>长&emsp;度（米）</span>${prolist.data.length}</li>
 			<li><span>直径（cm）</span>${prolist.data.diameter}</li>
 			<li><span>立方数（m<font>3</font>）</span>${prolist.data.cubage}</li>
-			<%-- <li><span>重&emsp;量（kg）${prolist.data.weight}</span></li> --%>
-		</c:if>
+			<li><span>重&emsp;量（kg）${prolist.data.weight}</span></li>
+		</c:if> --%>
 		</ul>
 		<div class="pro_pic">
 			<h1>产品图片</h1>
