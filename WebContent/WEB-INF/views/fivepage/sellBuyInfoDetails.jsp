@@ -38,24 +38,24 @@
 	<div class="pro_details">
 		<div class="detail_title">
 		<c:if test="${prolist.data.requestType =='BUY'}">
-	 		<h1>求购</h1>
+	 		<h1>求购数量：${prolist.data.number}&emsp;编号：${prolist.data.serialNo}</h1>
 		</c:if>
 		<c:if test="${prolist.data.requestType =='SELL'}">
-	 		<h1>供应</h1>
+	 		<h1>供应数量：${prolist.data.number}&emsp;编号：${prolist.data.serialNo}</h1>
 		</c:if>
 		<%-- ${prolist.data.content} --%>
 			<p>${prolist.data.classificationName} ${prolist.data.materialName}
 			${prolist.data.length}*${prolist.data.width}*${prolist.data.height} cm</p>
 		</div>
-		<ul class="info_list">
+		<%-- <ul class="info_list">
 			<li><span>长&emsp;度（cm）</span>${prolist.data.length}</li>
 			<li><span>宽&emsp;度（cm）</span>${prolist.data.width}</li>
 			<li><span>厚&emsp;度（cm）</span>${prolist.data.height}</li>
 			<li><span>供求数量</span>${prolist.data.number}</li>
-			<%-- <li><span>重&emsp;量（kg）${prolist.data.weight}</span></li> --%>
-		</ul>
+			<li><span>重&emsp;量（kg）${prolist.data.weight}</span></li>
+		</ul> --%>
 		<div class="pro_pic">
-			<h1>供求图片</h1>
+			<!-- <h1>供求图片</h1> -->
 			<c:forEach items="${productAlbum}" var="pa">
 			<img src="http://112.74.213.8:82${pa.image}"/>
 			<a href="http://112.74.213.8:82${pa.image}">
