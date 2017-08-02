@@ -19,6 +19,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class PostUtil {
 	private final static String SERVER_URL="http://112.74.213.8:82";//生产
+//	private final static String SERVER_URL="http://47.92.69.17:8080/genu-wss-app";//test
+//	private final static String SERVER_URL="http://localhost:82";//local
 //	private final static String SERVER_URL="http://112.74.213.8:83/genu-wss-app";//测试
 
 	public  String post(String postUrl,String param) {  
@@ -146,6 +148,16 @@ public class PostUtil {
 		String url=SERVER_URL + "/sellBuyInfo/new/info";
 		String rs = formDataPostMethod(map,url);
 		return rs; 	
+	}
+
+	/**
+	 * 根据域名获取手机号
+	 * @param map
+	 * @return
+	 */
+	public String getMobileByDomain(HashMap<String, Object> map){
+		String url=SERVER_URL + "/customer/get-mobile-by-domain";
+		return formDataPostMethod(map,url);
 	}
 	
 	public String formDataPostMethod(HashMap<String, Object> map,String requestUrl){
