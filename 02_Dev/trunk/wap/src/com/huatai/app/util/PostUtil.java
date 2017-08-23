@@ -18,7 +18,9 @@ import org.springframework.stereotype.Component;
 //工具类
 @Component
 public class PostUtil {
-	private final static String SERVER_URL="http://112.74.213.8:82";//生产
+//	private final static String SERVER_URL="http://112.74.213.8:82";//生产
+	private final static String SERVER_URL="http://112.74.213.8:83/genu-wechat";//生产
+//	private final static String SERVER_URL="http://10.173.187.179:83/genu-wechat";//阿里内网生产
 //	private final static String SERVER_URL="http://47.92.69.17:8080/genu-wss-app";//test
 //	private final static String SERVER_URL="http://localhost:82";//local
 //	private final static String SERVER_URL="http://112.74.213.8:83/genu-wss-app";//测试
