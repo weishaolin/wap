@@ -19,15 +19,17 @@ public class HomeController {
             // 1. 获取域名
             String serverName = request.getServerName();
 
+            System.out.println("[serverName]=" + serverName);
+
             // 2. 根据域名查找手机号
             HashMap<String, Object> params = new HashMap<>();
             params.put("domain", serverName);
             PostUtil postUtil = new PostUtil();
             String formDataPost = postUtil.getMobileByDomain(params);
+            System.out.println("[HOME]" + formDataPost);
             if (StringUtils.isNotBlank(formDataPost)) {
                 System.out.println("formDataPost：" + formDataPost);
                 JSONObject json = JSONObject.fromObject(formDataPost);
-                System.out.println(serverName);
 
                 // 3. 重定向到分类列表
                 Object data = json.get("data");
