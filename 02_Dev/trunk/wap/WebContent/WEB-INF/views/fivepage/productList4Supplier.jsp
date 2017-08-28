@@ -266,19 +266,16 @@ var range = {
 var sear=new RegExp('-');
 	$("#searchString").click(function(){
 		var inputVal=$("#searchInput").val();
-		var result=new Object();
-		 result.beginLength=range.beginLength
-		 result.endLength=range.endLength
-		 result.beginWidth=range.beginWidth
-		 result.endWidth=range.endWidth
-		 result.beginHeight=range.beginHeight
-		 result.endHeight=range.endHeight
-		 result.edgeShape=range.edgeShape
-		 result.material = "${materialId}";
-		 result.searchString = inputVal;
-		 var pro = JSON.stringify(result);
-		//location.href = "${ctx}/product/searchString?searchString="+pro;
-		 location.href = "${ctx}/product/screen/${mobile}?data="+pro;
+        var params = $.extend({}, {
+            material: "${materialId}",
+            searchString: inputVal
+        }, range);
+
+        var pa = '';
+        for (var p in params) {
+            pa += "&" + p + "=" + params[p];
+        }
+        location.href = "${ctx}/product/screen/${mobile}?" + pa.substr(1);
 	});
 	//长
 	$("#lengthId li").click(function(){
@@ -361,37 +358,16 @@ var sear=new RegExp('-');
 			range.beginHeight=$.trim($('#bh').val());
 			range.endHeight=$.trim($('#eh').val());
 		}
-		 var result=new Object();
-		 result.beginLength=range.beginLength
-		 result.endLength=range.endLength
-		 result.beginWidth=range.beginWidth
-		 result.endWidth=range.endWidth
-		 result.beginHeight=range.beginHeight
-		 result.endHeight=range.endHeight
-		 result.edgeShape=range.edgeShape
-		 result.material = "${materialId}";
-		 result.searchString=$("#searchStr").val();
-		 var pro = JSON.stringify(result);
-		 location.href = "${ctx}/product/screen/${mobile}?data="+pro;
-	 	  /*$.post("${ctx}/screen",pro,function(data,status){
-		        alert("Data: " + pro + "nStatus: " + status);
-		    }); */
-		  /* $.ajax({  
-             type : "POST",  //提交方式  
-             async:false,  
-             url : "${ctx}/screen",//路径  
-             //dataType:'JSON', 
-             data :pro,//数据，这里使用的是Json格式进行传输  
-             contentType : "application/json",
-            // jsonp:'jsonpcallback', 
-             success : function(data) {//返回数据根据结果进行相应的处理  
-             	$("#storng").text(data);
-             } ,
-             error:function(){
-             	alert('fail');
-             	 //$("p").text(result.age); 
-             }
-         });  */
+        var params = $.extend({}, {
+            material: "${materialId}",
+            searchString: $("#searchStr").val()
+        }, range);
+
+        var pa = '';
+        for (var p in params) {
+            pa += "&" + p + "=" + params[p];
+        }
+        location.href = "${ctx}/product/screen/${mobile}?" + pa.substr(1);
 		});
 </script>
 <script type="text/javascript">
@@ -400,35 +376,7 @@ pullDownEl, pullDownOffset,
 pullUpEl, pullUpOffset,  
 generatedCount = 0;  
 
-var rangeTwo={
-		'beginLength':'',
-		'endLength':'',
-		'beginWidth':'',
-		'endWidth':'',
-		'beginHeight':'',
-		'endHeight':'',
-		'edgeShape':'',
-		'pageSize':'0'
-}
-/* $(document).ready(function(){
-	rangeTwo.beginLength=${transmit.beginLength };
-	rangeTwo.endLength=${transmit.endLength };
-	rangeTwo.beginWidth=${transmit.beginWidth };
-	rangeTwo.endWidth=${transmit.endWidth };
-	rangeTwo.beginHeight=${transmit.beginHeight };
-	rangeTwo.endHeight=${transmit.endHeight };
-	rangeTwo.edgeShape=${transmit.edgeShape };
-}); */
-function pullDownAction () {  
-   /*  $.ajax({  
-    url:"刷新的ajax请求",  
-    type:"POST",  
-    success:function(json){  
-        //使用ajax请求刷新列表数据，这块肯定得自己写  
-        //...  
-        myScroll.refresh();//刷新滑动区域  
-    }  
-});   */
+function pullDownAction () {
 	location.href = "${ctx}/product/list/material/${mobile}?materialId=${materialId}&materialName=${materialName}";
 }   
 
@@ -449,10 +397,10 @@ function pullUpAction () {
 	 object.searchString=$("#searchStr").val();
 	var obj= JSON.stringify(object);
 	var content=""; 
-   $.ajax({  
-    url:"${ctx}/product/pullUp/${mobile}?pullUp="+obj,  
+    $.ajax({
+    url:"${ctx}/product/pullUp/${mobile}",
     type:"POST",  
-   // data :obj,//数据，这里使用的是Json格式进行传输  
+    data :obj,//数据，这里使用的是Json格式进行传输
     contentType : "application/json",
     success:function(data){  
         //使用ajax请求返回的数据追加到列表后面，这块肯定得自己写  
