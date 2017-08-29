@@ -212,13 +212,35 @@ public class ProductController {
     //筛选--过滤供应商现货
     @RequestMapping(value = "/screen/{mobile}")
     public String screen4Supplier(@RequestParam Map<String, Object> params, @PathVariable("mobile") String mobile, Model model) {
-        HashMap map = new HashMap();
-        map.putAll(params);
+        JSONObject jb = JSONObject.fromObject(params);
+        HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("currentUserId", "1");
-
-        if (params.get("searchString") != null) {
-            model.addAttribute("searchString", params.get("searchString").toString());
+        if (jb.getString("beginLength").length() > 0 && jb.getString("endLength").length() > 0) {
+            map.put("beginLength", jb.getString("beginLength"));
+            map.put("endLength", jb.getString("endLength"));
         }
+        if (jb.getString("beginWidth").length() > 0 && jb.getString("endWidth").length() > 0) {
+            map.put("beginWidth", jb.getString("beginWidth"));
+            map.put("endWidth", jb.getString("endWidth"));
+        }
+        if (jb.getString("beginHeight").length() > 0 && jb.getString("endHeight").length() > 0) {
+            map.put("beginHeight", jb.getString("beginHeight"));
+            map.put("endHeight", jb.getString("endHeight"));
+        }
+        if (jb.getString("edgeShape").length() > 0) {
+            map.put("edgeShape", jb.getString("edgeShape"));
+        }
+        if (jb.getString("edgeShape").length() > 0) {
+            map.put("edgeShape", jb.getString("edgeShape"));
+        }
+        if (jb.getString("material").length() > 0) {
+            map.put("material", jb.getString("material"));
+        }
+        if (jb.getString("searchString").length() > 0) {
+            map.put("searchString", jb.getString("searchString"));
+            model.addAttribute("searchString", jb.getString("searchString"));
+        }
+        System.out.println("map:" + map);
         if (StringUtils.isNumeric(mobile)) {
             Long i = Long.valueOf(mobile.trim()) / 2;
             mobile = i.toString();
@@ -227,8 +249,8 @@ public class ProductController {
         System.out.println("formDataPost：" + formDataPost);
         JSONObject json = JSONObject.fromObject(formDataPost);
         model.addAttribute("prolist", json);
-        model.addAttribute("materialId", map.get("material").toString());
-        JSONObject transmit = JSONObject.fromObject(params);
+        model.addAttribute("materialId", jb.getString("material"));
+        JSONObject transmit = JSONObject.fromObject(map);
         System.out.println("transmit:" + transmit);
         model.addAttribute("transmit", transmit);
         return "fivepage/productList4Supplier";
@@ -283,14 +305,40 @@ public class ProductController {
         return formDataPost;
     }
 
-    @RequestMapping(value = "/pullUp/{mobile}", method = RequestMethod.POST)
+    @RequestMapping(value = "/pullUp/{mobile}", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String pullUp4Supplier(@RequestBody Map<String, Object> params,
                                   @PathVariable("mobile") String mobile, Model model) {
+        JSONObject jb = JSONObject.fromObject(params);
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.putAll(params);
         map.put("currentUserId", "1");
-
+        if (jb.getString("beginLength").length() > 0 && jb.getString("endLength").length() > 0) {
+            map.put("beginLength", jb.getString("beginLength"));
+            map.put("endLength", jb.getString("endLength"));
+        }
+        if (jb.getString("beginWidth").length() > 0 && jb.getString("endWidth").length() > 0) {
+            map.put("beginWidth", jb.getString("beginWidth"));
+            map.put("endWidth", jb.getString("endWidth"));
+        }
+        if (jb.getString("beginHeight").length() > 0 && jb.getString("endHeight").length() > 0) {
+            map.put("beginHeight", jb.getString("beginHeight"));
+            map.put("endHeight", jb.getString("endHeight"));
+        }
+        if (jb.getString("edgeShape").length() > 0) {
+            map.put("edgeShape", jb.getString("edgeShape"));
+        }
+        if (jb.getString("pageSize").length() > 0) {
+            map.put("page", jb.getString("pageSize"));
+        }
+        if (jb.getString("sortProperty").length() > 0) {
+            map.put("sortProperty", jb.getString("sortProperty"));
+        }
+        if (jb.getString("searchString").length() > 0) {
+            map.put("searchString", jb.getString("searchString"));
+        }
+        if (jb.getString("material").length() > 0) {
+            map.put("material", jb.getString("material"));
+        }
         System.out.println("map:" + map);
         if (StringUtils.isNumeric(mobile)) {
             Long i = Long.valueOf(mobile.trim()) / 2;
@@ -298,9 +346,9 @@ public class ProductController {
         }
         String formDataPost = postUtil.formProductDataPost(map, mobile);
         System.out.println("formDataPost：" + formDataPost);
-        JSONObject json = JSONObject.fromObject(formDataPost);
-        model.addAttribute("prolist", json);
-        model.addAttribute("materialId", params.get("material").toString());
+//        JSONObject json = JSONObject.fromObject(formDataPost);
+//        model.addAttribute("prolist", json);
+//        model.addAttribute("materialId", jb.getString("material"));
 /*		JSONObject transmit = JSONObject.fromObject(map);
         System.out.println("transmit:"+transmit);
 		model.addAttribute("transmit", transmit);*/
