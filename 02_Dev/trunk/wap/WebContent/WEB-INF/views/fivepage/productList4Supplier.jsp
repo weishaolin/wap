@@ -405,16 +405,15 @@ function pullUpAction () {
     success:function(data){  
         //使用ajax请求返回的数据追加到列表后面，这块肯定得自己写  
         //...  
-        var obj= JSON.stringify(data);
-        var c =$.parseJSON( data );
-        if(c.data.length<10){
+        var c = data;
+        if(c.data.length < 10){
         	$("#pullUp").hide();
         }
-        if(c.data.length==0){
+        if(c.data.length == 0){
         	 $("#pullUp").hide();
         	 $("#pageSize").val(parseInt($("#pageSize").val())-1);
         }
-        $.each(eval("("+data+")").data, function(i, item) {
+        $.each(c.data, function(i, item) {
         	var bookingStr = "";
         	/* if(item.status=='READY_SALES'){
         		bookingStr = '<span style="color: green;">上架</span>';
